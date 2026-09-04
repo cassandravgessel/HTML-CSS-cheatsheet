@@ -11,6 +11,9 @@
   --color-sky: #b9d9ee;
   --color-butter: #f2dfa0;
   --color-peach: #efad7f;
+  --color-sage: #dce5a6;
+  --color-lilac: #e2c8e3;
+  --color-aqua: #bfe1dc;
   --color-blue: #5577c6;
   --color-blue-dark: #36559e;
   --color-muted: #62665f;
@@ -309,6 +312,10 @@ ol {
 .card--lavender { background: var(--color-lavender); }
 .card--sky { background: var(--color-sky); }
 .card--butter { background: var(--color-butter); }
+.card--peach { background: #f3c7ac; }
+.card--sage { background: var(--color-sage); }
+.card--lilac { background: var(--color-lilac); }
+.card--aqua { background: var(--color-aqua); }
 
 .tag-list {
   display: flex;

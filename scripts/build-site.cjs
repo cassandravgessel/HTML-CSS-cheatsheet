@@ -7,6 +7,8 @@ const htmlWeeks = [2, 3, 4, 5, 6, 7];
 const jsWeeks = [1, 2, 3, 4, 5, 6, 7, 8];
 const phpWeeks = [1, 2, 3, 4, 5, 6, 7, 8];
 const searchIndex = [];
+const weekColors = ["mint", "lavender", "sky", "butter", "peach", "sage", "lilac", "aqua"];
+const weekColor = (week) => weekColors[(week - 1) % weekColors.length];
 
 const jsMeta = [
   ["Eerste stappen met JavaScript", "Variabelen, datatypes en je eerste uitvoer.", ["variabelen", "datatypes", "DOM"]],
@@ -145,7 +147,7 @@ function buildHtmlCss() {
   const home = fs.readFileSync(path.join(root, "content/home.md"), "utf8");
   const cards = [...home.matchAll(/### Week (\d+) - ([^\n]+)\s+([\s\S]*?)(?=\n### Week|\n## Zo gebruik)/g)].map((m, i) => {
     const topics = (m[3].match(/\*\*Onderwerpen:\*\* ([^\n]+)/)?.[1] || "").split(", ").filter(Boolean).slice(0, 4);
-    return detailsCard({ number: +m[1], title: m[2], description: m[3].split(/\n\n/)[0].trim(), topics, href: `week-${m[1]}.html`, color: ["mint", "lavender", "sky", "butter"][i % 4] });
+    return detailsCard({ number: +m[1], title: m[2], description: m[3].split(/\n\n/)[0].trim(), topics, href: `week-${m[1]}.html`, color: weekColor(+m[1]) });
   }).join("");
   courseHome({ course: "html-css", courseName: "HTML &amp; CSS", eyebrow: "Programmeren P1 · Naslagwerk", intro: "Alles wat je per week nodig hebt om HTML en CSS terug te zoeken, met korte uitleg en duidelijke codevoorbeelden.", cards, startHref: "week-2.html", art: "&lt;/&gt;" });
   for (const week of htmlWeeks) {
@@ -160,7 +162,7 @@ function buildHtmlCss() {
 
 function buildJavascript() {
   ensureDir("javascript");
-  const cards = jsMeta.map(([title, description, topics], i) => detailsCard({ number: i + 1, title, description, topics, href: `week-${i + 1}.html`, color: ["mint", "lavender", "sky", "butter"][i % 4] })).join("");
+  const cards = jsMeta.map(([title, description, topics], i) => detailsCard({ number: i + 1, title, description, topics, href: `week-${i + 1}.html`, color: weekColor(i + 1) })).join("");
   courseHome({ course: "javascript", courseName: "JavaScript", eyebrow: "Programmeren P2 · Naslagwerk", intro: "Van variabelen en functies tot events, arrays en timers. Gebruik deze pagina’s om JavaScript snel terug te zoeken.", cards, startHref: "week-1.html", art: "JS" });
   jsWeeks.forEach((week) => {
     const legacyPath = path.join(root, `old_content/JavaScript-Cheatsheet-main/pages/week${week}.html`);
@@ -182,7 +184,7 @@ function buildPhp() {
       const descriptions = period === 3
         ? ["PHP, server-side code, variabelen en output.", "Werk overzichtelijk met bestanden en includes.", "Maak verbinding met een database en lees gegevens.", "Verwerk gegevens uit GET- en POST-formulieren.", "Controleer invoer veilig op de server.", "Voeg gegevens toe en stuur daarna door.", "Bewaar meldingen en gegevens met sessions.", "Herhaal en combineer de onderdelen uit periode 3."]
         : ["Haal één item op en vul een bewerkformulier.", "Pas bestaande gegevens aan met UPDATE.", "Verwijder gegevens veilig uit de database.", "Breng Create, Read, Update en Delete samen.", "Maak accounts aan en sla wachtwoorden veilig op.", "Controleer inloggegevens en start een session.", "Toon loginstatus en bescherm pagina’s.", "Pas het menu aan op basis van de ingelogde gebruiker."];
-      return detailsCard({ number: week, title, description: descriptions[index], topics: title.split(/\s+&\s+|\s+/).filter((word) => word.length > 3).slice(0, 3), href: `periode-${period}/week-${String(week).padStart(2, "0")}.html`, color: ["mint", "lavender", "sky", "butter"][index % 4] });
+      return detailsCard({ number: week, title, description: descriptions[index], topics: title.split(/\s+&\s+|\s+/).filter((word) => word.length > 3).slice(0, 3), href: `periode-${period}/week-${String(week).padStart(2, "0")}.html`, color: weekColor(week) });
     }).join("");
     return `<section class="section php-period${period === 3 ? " section--white" : ""}" id="periode-${period}"><div class="container"><div class="section-heading"><p class="eyebrow">Periode ${period}</p><h2>${period === 3 ? "PHP-basis, Create & Read" : "CRUD, login & sessions"}</h2><p>${period === 3 ? "Van de basis van PHP tot formulieren, databases en gegevens toevoegen." : "Van gegevens aanpassen en verwijderen tot accounts en beveiligde pagina’s."}</p></div><div class="card-grid">${cards}</div></div></section>`;
   }).join("");
