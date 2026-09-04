@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 2 - Start HTML uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 2 - Start HTML | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html" aria-current="page">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 2</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 2</p><h1>Start HTML</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>HTML en CSS vormen samen de basis van een website. HTML beschrijft welke inhoud op de pagina staat. CSS bepaalt hoe die inhoud eruitziet. In deze week leer je de structuur van een HTML-document en de eerste veelgebruikte HTML-tags kennen.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik leg uit wat HTML is.</li>
+<li>Ik leg uit wat CSS is.</li>
+<li>Ik pas de HTML-tags <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;img&gt;</code> en <code>&lt;a&gt;</code> toe.</li>
+<li>Ik geef met CSS een HTML-tag een kleur.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#html-en-css">HTML en CSS</a></li>
+<li><a href="#html-bestanden-en-de-browser">HTML-bestanden en de browser</a></li>
+<li><a href="#het-html-document">Het HTML-document</a></li>
+<li><a href="#anatomie-van-een-html-element">Anatomie van een HTML-element</a></li>
+<li><a href="#koppen-en-alineas">Koppen en alinea&#39;s</a></li>
+<li><a href="#afbeeldingen">Afbeeldingen</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#een-kleur-geven-met-css">Een kleur geven met CSS</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="html-en-css">HTML en CSS<a class="heading-link" href="#html-en-css" aria-label="Link naar HTML en CSS">#</a></h2>
+<p>HTML staat voor <strong>HyperText Markup Language</strong>. HTML beschrijft de inhoud en de structuur van een webpagina, zoals teksten, titels, afbeeldingen en links naar andere pagina&#39;s.</p>
+<p>CSS staat voor <strong>Cascading Style Sheets</strong>. CSS verzorgt de vormgeving van het HTML-document. Met CSS verander je bijvoorbeeld kleuren, lettertypes, afstanden en de plaats van elementen.</p>
+<pre><code class="language-text">HTML = inhoud en structuur
+CSS  = vormgeving
+</code></pre>
+<p>HTML en CSS hebben dus ieder een andere taak, maar worden samen gebruikt om een complete website te maken.</p>
+<h2 id="html-bestanden-en-de-browser">HTML-bestanden en de browser<a class="heading-link" href="#html-bestanden-en-de-browser" aria-label="Link naar HTML-bestanden en de browser">#</a></h2>
+<p>HTML schrijf je in een bestand met de extensie <code>.html</code>. Een browser leest de instructies in dat bestand en zet ze om in een zichtbare webpagina.</p>
+<p>De eerste pagina van een website heet meestal <code>index.html</code>. De naam <code>index</code> verwijst naar de startpagina of inhoudsopgave van de website.</p>
+<pre><code class="language-text">mijn-website/
+└── index.html
+</code></pre>
+<h2 id="het-html-document">Het HTML-document<a class="heading-link" href="#het-html-document" aria-label="Link naar Het HTML-document">#</a></h2>
+<p>Een HTML-pagina heeft een vaste basisstructuur:</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;nl&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Mijn eerste website&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welkom op mijn website&lt;/h1&gt;
+    &lt;p&gt;Dit is mijn eerste webpagina.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li><code>&lt;!doctype html&gt;</code> vertelt de browser dat het document HTML5 gebruikt.</li>
+<li><code>&lt;html&gt;</code> bevat het volledige HTML-document.</li>
+<li><code>&lt;head&gt;</code> bevat informatie over het document, zoals de titel en links naar stylesheets.</li>
+<li><code>&lt;title&gt;</code> bepaalt de tekst die in het browsertabblad verschijnt.</li>
+<li><code>&lt;body&gt;</code> bevat alles wat zichtbaar wordt op de webpagina.</li>
+</ul>
+<h2 id="anatomie-van-een-html-element">Anatomie van een HTML-element<a class="heading-link" href="#anatomie-van-een-html-element" aria-label="Link naar Anatomie van een HTML-element">#</a></h2>
+<p>HTML bestaat uit HTML-tags. Veel elementen hebben een openingstag, inhoud en een sluittag.</p>
+<pre><code class="language-html">&lt;p&gt;Een stukje tekst&lt;/p&gt;
+</code></pre>
+<ul>
+<li><code>&lt;p&gt;</code> is de openingstag.</li>
+<li><code>Een stukje tekst</code> is de inhoud.</li>
+<li><code>&lt;/p&gt;</code> is de sluittag. De schuine streep geeft aan dat het element wordt afgesloten.</li>
+</ul>
+<p>Sommige elementen, zoals <code>&lt;img&gt;</code>, hebben geen aparte sluittag. Deze elementen krijgen hun informatie via attributen.</p>
+<h2 id="koppen-en-alineas">Koppen en alinea&#39;s<a class="heading-link" href="#koppen-en-alineas" aria-label="Link naar Koppen en alinea's">#</a></h2>
+<p>Met heading-tags maak je koppen. <code>&lt;h1&gt;</code> is de belangrijkste kop van de pagina. <code>&lt;h2&gt;</code> en <code>&lt;h3&gt;</code> zijn subkoppen. Gebruik de niveaus in een logische volgorde.</p>
+<pre><code class="language-html">&lt;h1&gt;Recepten&lt;/h1&gt;
+&lt;h2&gt;Ontbijt&lt;/h2&gt;
+&lt;h3&gt;Pannenkoeken&lt;/h3&gt;
+&lt;p&gt;Hier staat een korte beschrijving van het recept.&lt;/p&gt;
+</code></pre>
+<ul>
+<li>Gebruik bij voorkeur één <code>&lt;h1&gt;</code> als hoofdtitel van de pagina.</li>
+<li>Gebruik <code>&lt;h2&gt;</code> voor hoofdonderdelen onder de titel.</li>
+<li>Gebruik <code>&lt;h3&gt;</code> voor onderdelen binnen een <code>&lt;h2&gt;</code>-sectie.</li>
+<li>Gebruik <code>&lt;p&gt;</code> voor een alinea met gewone tekst.</li>
+</ul>
+<h2 id="afbeeldingen">Afbeeldingen<a class="heading-link" href="#afbeeldingen" aria-label="Link naar Afbeeldingen">#</a></h2>
+<p>Met <code>&lt;img&gt;</code> plaats je een afbeelding op de pagina. Het attribuut <code>src</code> verwijst naar het bestand. Het attribuut <code>alt</code> beschrijft wat op de afbeelding staat.</p>
+<pre><code class="language-html">&lt;img src=&quot;images/kat.jpg&quot; alt=&quot;Een slapende oranje kat&quot;&gt;
+</code></pre>
+<ul>
+<li><code>src</code> betekent source en bevat het pad naar de afbeelding.</li>
+<li><code>alt</code> geeft een tekstalternatief als de afbeelding niet zichtbaar is en helpt gebruikers van een schermlezer.</li>
+</ul>
+<h2 id="links">Links<a class="heading-link" href="#links" aria-label="Link naar Links">#</a></h2>
+<p>Met <code>&lt;a&gt;</code> maak je een link. Het attribuut <code>href</code> bevat het webadres of het pad van de doelpagina.</p>
+<pre><code class="language-html">&lt;a href=&quot;https://casscodes.com&quot;&gt;Bekijk Casscodes&lt;/a&gt;
+</code></pre>
+<p>Een interne link verwijst naar een bestand binnen dezelfde website:</p>
+<pre><code class="language-html">&lt;a href=&quot;contact.html&quot;&gt;Naar de contactpagina&lt;/a&gt;
+</code></pre>
+<p>Gebruik linktekst die duidelijk maakt waar de link naartoe gaat.</p>
+<h2 id="een-kleur-geven-met-css">Een kleur geven met CSS<a class="heading-link" href="#een-kleur-geven-met-css" aria-label="Link naar Een kleur geven met CSS">#</a></h2>
+<p>Een CSS-regel kiest eerst welk HTML-element je wilt aanpassen. Daarna geef je aan wat er moet veranderen. In dit voorbeeld kiest <code>p</code> alle alinea&#39;s en verandert <code>color</code> de tekstkleur.</p>
+<pre><code class="language-css">p {
+  color: blue;
+}
+</code></pre>
+<ul>
+<li><code>p</code> is de selector.</li>
+<li><code>color</code> is de eigenschap. In CSS heet dit een <strong>property</strong>.</li>
+<li><code>blue</code> is de ingestelde waarde. In CSS heet dit een <strong>value</strong>.</li>
+<li>De declaratie eindigt met een puntkomma.</li>
+</ul>
+<p>De CSS staat meestal in een apart bestand, bijvoorbeeld <code>style.css</code>. Dat bestand koppel je in de <code>&lt;head&gt;</code> van het HTML-document:</p>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+</code></pre>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>HTML beschrijft de inhoud en structuur; CSS verzorgt de vormgeving.</li>
+<li>De startpagina van een website heet meestal <code>index.html</code>.</li>
+<li>Zichtbare inhoud staat in de <code>&lt;body&gt;</code> van het HTML-document.</li>
+<li>Met <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> en <code>&lt;p&gt;</code> structureer je tekst.</li>
+<li><code>&lt;img&gt;</code> plaatst een afbeelding en <code>&lt;a&gt;</code> maakt een link.</li>
+<li>Met de CSS-eigenschap <code>color</code> verander je de tekstkleur.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="index.html">Terug naar home</a></li>
+<li>Volgende: <a href="week-3.html">Week 3 - HTML-tags, formulieren en tabellen</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

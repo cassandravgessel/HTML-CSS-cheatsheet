@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 4 · Week 1 - Editpagina &amp; item ophalen uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 4 · Week 1 - Editpagina &amp; item ophalen | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-4/week-01.html" aria-current="page">Week 1</a></li><li><a href="../periode-4/week-02.html">Week 2</a></li><li><a href="../periode-4/week-03.html">Week 3</a></li><li><a href="../periode-4/week-04.html">Week 4</a></li><li><a href="../periode-4/week-05.html">Week 5</a></li><li><a href="../periode-4/week-06.html">Week 6</a></li><li><a href="../periode-4/week-07.html">Week 7</a></li><li><a href="../periode-4/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 4 · Week 1</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 4 · Week 1</p><h1>Editpagina &amp; item ophalen</h1></div></header><article class="lesson-content container"><h2 id="wat-leer-je-deze-week">Wat leer je deze week?<a class="heading-link" href="#wat-leer-je-deze-week" aria-label="Link naar Wat leer je deze week?">#</a></h2>
+<p>In periode 3 kon je al meerdere items uit de database ophalen en tonen op een pagina.</p>
+<p>Deze week ga je een stap verder: je haalt één specifiek item op.</p>
+<p>Dat heb je nodig voor een editpagina, want voordat je iets kunt aanpassen, moet je eerst weten welk item je gaat aanpassen.</p>
+<h2 id="kernconcepten">Kernconcepten<a class="heading-link" href="#kernconcepten" aria-label="Link naar Kernconcepten">#</a></h2>
+<p>Een editpagina werkt eigenlijk als een formulier dat al is ingevuld.</p>
+<p>Stel: je hebt een lijst met huiswerkopdrachten.</p>
+<p>Als je op “bewerken” klikt bij één opdracht, moet PHP weten welke opdracht je bedoelt. Daarom geef je het <code>id</code> van dat item mee in de URL.</p>
+<p>Bijvoorbeeld:</p>
+<pre data-lang="text"><code class="language-text">edit.php?id=3</code></pre>
+<p>PHP leest dat <code>id</code>, zoekt in de database naar item 3 en vult daarna het formulier met de bestaande data.</p>
+<p>De flow is dus:</p>
+<pre data-lang="text"><code class="language-text">klik op bewerken
+↓
+id gaat mee in de URL
+↓
+PHP leest het id uit met $_GET
+↓
+database zoekt het juiste item
+↓
+formulier wordt ingevuld met bestaande data</code></pre>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen?<a class="heading-link" href="#wat-moet-je-kennen" aria-label="Link naar Wat moet je kennen?">#</a></h2>
+<h3>1. GET parameters uitlezen</h3>
+<blockquote><p><strong>Uitleg</strong><br>GET-data staat in de URL.<br>Je gebruikt dit bijvoorbeeld om een <code>id</code> mee te sturen naar een detailpagina of editpagina.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$_GET</code></li>
+<li>query string met <code>?id=3</code></li>
+<li>veilig uitlezen met <code>?? ''</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<p>URL:</p>
+<pre data-lang="text"><code class="language-text">edit.php?id=3</code></pre>
+<p>PHP:</p>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'] ?? '';
+
+echo $id;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> GET-data is zichtbaar in de URL. Gebruik het dus niet voor wachtwoorden of geheime informatie.</p></blockquote>
+<h3>2. Een editlink maken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Op je overzichtspagina toon je meerdere items.<br>Bij elk item maak je een link naar de editpagina en stuur je het juiste <code>id</code> mee.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>link maken met <code>&lt;a&gt;</code></li>
+<li>id uit een database-array gebruiken</li>
+<li><code>?id=...</code> toevoegen aan de URL</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;a href="edit.php?id=&lt;?= $item['id'] ?&gt;"&gt;
+    Bewerken
+&lt;/a&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Zonder id weet de editpagina niet welk item aangepast moet worden.</p></blockquote>
+<h3>3. Eén item ophalen met SELECT WHERE</h3>
+<blockquote><p><strong>Uitleg</strong><br>In periode 3 gebruikte je <code>SELECT</code> om meerdere items op te halen.<br>Nu wil je één specifiek item ophalen. Daarvoor gebruik je <code>WHERE</code>.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>SELECT * FROM</code></li>
+<li><code>WHERE id = ?</code></li>
+<li><code>prepare()</code></li>
+<li><code>execute()</code></li>
+<li><code>fetch(PDO::FETCH_ASSOC)</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+require 'includes/db.php';
+
+$id = $_GET['id'] ?? '';
+
+$stmt = $pdo-&gt;prepare("SELECT * FROM items WHERE id = ?");
+$stmt-&gt;execute([$id]);
+
+$item = $stmt-&gt;fetch(PDO::FETCH_ASSOC);
+?&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>WHERE</code> filtert je query. Je zegt eigenlijk: geef mij alleen de rij waarvan het id klopt.</p></blockquote>
+<h3>4. fetch() gebruiken voor één resultaat</h3>
+<blockquote><p><strong>Uitleg</strong><br>Als je meerdere items ophaalt, gebruik je <code>fetchAll()</code>.<br>Als je één item ophaalt, gebruik je <code>fetch()</code>.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>fetch(PDO::FETCH_ASSOC)</code></li>
+<li>verschil tussen één rij en meerdere rijen</li>
+<li>associative array uitlezen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$item = $stmt-&gt;fetch(PDO::FETCH_ASSOC);
+
+echo $item['title'];</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>fetch()</code> geeft één associative array terug. Je hoeft hier dus geen <code>foreach</code> voor te gebruiken.</p></blockquote>
+<h3>5. Een formulier vooraf invullen</h3>
+<blockquote><p><strong>Uitleg</strong><br>Op een editpagina wil je dat de bestaande data alvast in het formulier staat.<br>Dat doe je met het <code>value</code> attribuut.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>value=""</code></li>
+<li>PHP shorthand <code>&lt;?= ?&gt;</code></li>
+<li>data uit een associative array tonen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="text" 
+    name="title" 
+    value="&lt;?= $item['title'] ?&gt;"
+&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Je haalt data uit de database en zet die terug in het formulier.</p></blockquote>
+<h2 id="veelgemaakte-fouten-met-voorbeelden">Veelgemaakte fouten (met voorbeelden)<a class="heading-link" href="#veelgemaakte-fouten-met-voorbeelden" aria-label="Link naar Veelgemaakte fouten (met voorbeelden)">#</a></h2>
+<h3>1. Het id niet meesturen in de link</h3>
+<p>Als je geen id meestuurt, weet <code>edit.php</code> niet welk item opgehaald moet worden.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;a href="edit.php"&gt;Bewerken&lt;/a&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">&lt;a href="edit.php?id=&lt;?= $item['id'] ?&gt;"&gt;
+    Bewerken
+&lt;/a&gt;</code></pre>
+<h3>2. <code>$_GET['id']</code> gebruiken zonder fallback</h3>
+<p>Als <code>id</code> niet in de URL staat, krijg je een warning.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'] ?? '';</code></pre>
+<h3>3. Alle items ophalen in plaats van één item</h3>
+<p>Voor een editpagina wil je niet de hele tabel ophalen.</p>
+<p>Je wil alleen het item dat bij het id hoort.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;query("SELECT * FROM items");</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("SELECT * FROM items WHERE id = ?");
+$stmt-&gt;execute([$id]);</code></pre>
+<h3>4. <code>fetchAll()</code> gebruiken voor één item</h3>
+<p><code>fetchAll()</code> geeft een lijst met resultaten terug.</p>
+<p>Voor een editpagina wil je juist één resultaat.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$item = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+
+echo $item['title'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$item = $stmt-&gt;fetch(PDO::FETCH_ASSOC);
+
+echo $item['title'];</code></pre>
+<h3>5. Vergeten om bestaande data in het formulier te tonen</h3>
+<p>Dan ziet de gebruiker een leeg formulier en weet die niet wat er aangepast wordt.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;input type="text" name="title"&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="text" 
+    name="title" 
+    value="&lt;?= $item['title'] ?&gt;"
+&gt;</code></pre>
+<h2 id="snippets">Snippets<a class="heading-link" href="#snippets" aria-label="Link naar Snippets">#</a></h2>
+<h3>ID uitlezen uit de URL</h3>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'] ?? '';</code></pre>
+<h3>Editlink maken</h3>
+<pre data-lang="php"><code class="language-php">&lt;a href="edit.php?id=&lt;?= $item['id'] ?&gt;"&gt;
+    Bewerken
+&lt;/a&gt;</code></pre>
+<h3>Eén item ophalen</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("SELECT * FROM items WHERE id = ?");
+$stmt-&gt;execute([$id]);
+
+$item = $stmt-&gt;fetch(PDO::FETCH_ASSOC);</code></pre>
+<h3>Data tonen in een formulier</h3>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="text" 
+    name="title" 
+    value="&lt;?= $item['title'] ?&gt;"
+&gt;</code></pre>
+<h3>Controleren of er een item gevonden is</h3>
+<pre data-lang="php"><code class="language-php">if (!$item) {
+    echo "Item niet gevonden.";
+    exit;
+}</code></pre></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

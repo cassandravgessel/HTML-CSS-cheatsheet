@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 3 · Week 4 - Forms (GET &amp; POST) uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 3 · Week 4 - Forms (GET &amp; POST) | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-3/week-01.html">Week 1</a></li><li><a href="../periode-3/week-02.html">Week 2</a></li><li><a href="../periode-3/week-03.html">Week 3</a></li><li><a href="../periode-3/week-04.html" aria-current="page">Week 4</a></li><li><a href="../periode-3/week-05.html">Week 5</a></li><li><a href="../periode-3/week-06.html">Week 6</a></li><li><a href="../periode-3/week-07.html">Week 7</a></li><li><a href="../periode-3/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 3 · Week 4</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 3 · Week 4</p><h1>Forms (GET &amp; POST)</h1></div></header><article class="lesson-content container"><h2 id="wat-moet-je-kennen-samenvatting">Wat moet je kennen (samenvatting)<a class="heading-link" href="#wat-moet-je-kennen-samenvatting" aria-label="Link naar Wat moet je kennen (samenvatting)">#</a></h2>
+<ul>
+<li>Verschil tussen GET en POST</li>
+<li><code>$_GET</code> en <code>$_POST</code></li>
+<li>Formulier maken met <code>method</code> en <code>action</code></li>
+<li>Het belang van <code>name</code> in inputvelden</li>
+<li>Data veilig uitlezen met <code>?? ''</code></li>
+</ul>
+<h2 id="1-get-vs-post">1. GET vs POST<a class="heading-link" href="#1-get-vs-post" aria-label="Link naar 1. GET vs POST">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>GET zet data in de URL. POST verstuurt data via de request body.<br>GET gebruik je vaak voor filters of id’s. POST gebruik je voor formulieren.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>GET = zichtbaar in URL</li>
+<li>POST = niet zichtbaar in URL</li>
+<li><code>$_GET</code></li>
+<li><code>$_POST</code></li>
+</ul>
+<h3>Voorbeeld (GET)</h3>
+<p>URL:</p>
+<pre data-lang="text"><code class="language-text">details.php?id=3</code></pre>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'] ?? '';
+echo $id;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Alles wat in GET zit, is zichtbaar in de URL.</p></blockquote>
+<h2 id="2-formulier-met-post">2. Formulier met POST<a class="heading-link" href="#2-formulier-met-post" aria-label="Link naar 2. Formulier met POST">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Met een HTML-formulier stuur je data naar een ander PHP-bestand.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>&lt;form method="POST" action="verwerk.php"&gt;</code></li>
+<li><code>name</code> attribuut is verplicht</li>
+<li><code>$_POST['veldnaam']</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="html"><code class="language-html">&lt;form method="POST" action="verwerk.php"&gt;
+    &lt;label for="title"&gt;Titel&lt;/label&gt;
+    &lt;input id="title" name="title" type="text"&gt;
+    &lt;button type="submit"&gt;Opslaan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';
+echo $title;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Zonder <code>name</code> wordt er niets verstuurd.</p></blockquote>
+<h2 id="3-data-veilig-uitlezen">3. Data veilig uitlezen<a class="heading-link" href="#3-data-veilig-uitlezen" aria-label="Link naar 3. Data veilig uitlezen">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Als een veld niet bestaat, krijg je een foutmelding.<br>Met <code>?? ''</code> voorkom je warnings.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Null coalescing operator <code>??</code></li>
+<li>Fouten voorkomen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<h2 id="veelgemaakte-fouten-kort">Veelgemaakte fouten (kort)<a class="heading-link" href="#veelgemaakte-fouten-kort" aria-label="Link naar Veelgemaakte fouten (kort)">#</a></h2>
+<h3>1. <code>name</code> vergeten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="html"><code class="language-html">&lt;input id="title"&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="html"><code class="language-html">&lt;input id="title" name="title"&gt;</code></pre>
+<h3>2. GET gebruiken voor gevoelige data</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<p><code>/login.php?password=1234</code></p>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<p>Gebruik POST voor formulieren met gevoelige input.</p>
+<h3>3. $_POST gebruiken zonder method="POST"</h3>
+<p>❌ Form gebruikt GET maar je leest <code>$_POST</code></p>
+<p>✅ Zorg dat method en superglobal overeenkomen.</p></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

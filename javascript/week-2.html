@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 2 - Functies en onclick uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 2 - Functies en onclick | JavaScript Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html" aria-current="page">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 2</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 2</p><h1>Functies en onclick</h1></div></header><article class="lesson-content container"><section>
+                <h2 id="functies-herbruikbare-code">Functies (herbruikbare code)<a class="heading-link" href="#functies-herbruikbare-code" aria-label="Link naar Functies (herbruikbare code)">#</a></h2>
+
+                <div class="callout">
+                    <strong>Wat is een functie?</strong><br>
+                    Een functie is een stukje code dat je kunt hergebruiken. Je schrijft het één keer en gebruikt het zo
+                    vaak je wilt of pas wanneer je het nodig hebt.
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <h3>Functie maken:</h3>
+                        <pre><code class="language-javascript">function zegHallo() {
+
+                              console.log(&quot;Hallo!&quot;);
+
+                            }</code></pre>
+                    </div>
+                    <div>
+                        <h3>Functie aanroepen:</h3>
+                        <pre><code class="language-javascript">zegHallo();
+
+                            // Nu gebeurt het pas!</code></pre>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Onthoud:</strong> Functie maken = code opschrijven, aanroepen = code pas gebruiken
+                </div>
+            </section>
+
+
+            <section>
+                <h2 id="functies-met-onclick-knop-reageert">Functies met onclick (knop reageert)<a class="heading-link" href="#functies-met-onclick-knop-reageert" aria-label="Link naar Functies met onclick (knop reageert)">#</a></h2>
+
+                <div class="two-column">
+                    <div>
+                        <strong>HTML:</strong>
+                        <pre><code class="language-javascript">&lt;button onclick=&quot;zegHallo()&quot;&gt;
+
+                              Klik mij
+
+                            &lt;/button&gt;</code></pre>
+                    </div>
+                    <div>
+                        <strong>JavaScript:</strong>
+                        <pre><code class="language-javascript">function zegHallo() {
+
+                              alert(&quot;Je
+                                klikte!&quot;);
+
+                            }</code></pre>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Wat gebeurt er?</strong>
+                    <ol>
+                        <li>Gebruiker klikt op knop</li>
+                        <li><code>onclick</code> roept functie <code>zegHallo()</code> aan</li>
+                        <li>Alert verschijnt</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section>
+                <h2 id="tekst-veranderen-met-innerhtml">Tekst veranderen met innerHTML<a class="heading-link" href="#tekst-veranderen-met-innerhtml" aria-label="Link naar Tekst veranderen met innerHTML">#</a></h2>
+
+                <div class="two-column">
+                    <div>
+                        <strong>HTML:</strong>
+                        <pre><code class="language-javascript">&lt;p id=&quot;tekst&quot;&gt;Oude tekst&lt;/p&gt;
+
+                            &lt;button onclick=&quot;verander()&quot;&gt;
+
+                              Verander tekst
+
+                            &lt;/button&gt;</code></pre>
+                    </div>
+                    <div>
+                        <strong>JavaScript:</strong>
+                        <pre><code class="language-javascript">function verander() {
+
+                              document.getElementById(&quot;tekst&quot;).innerHTML = &quot;Nieuwe tekst!&quot;;
+
+                            }</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 id="stijl-aanpassen-met-style">Stijl aanpassen met style<a class="heading-link" href="#stijl-aanpassen-met-style" aria-label="Link naar Stijl aanpassen met style">#</a></h2>
+
+                <h3>Kleur veranderen:</h3>
+                <pre><code class="language-javascript">function maakRood() {
+
+                      document.getElementById(&quot;tekst&quot;).style.color = &quot;red&quot;;
+
+                    }</code></pre>
+
+                <h3>Element verbergen/tonen:</h3>
+                <pre><code class="language-javascript">function verberg() {
+
+                      document.getElementById(&quot;foto&quot;).style.display = &quot;none&quot;;
+
+                    }
+
+
+                    function toon() {
+
+                      document.getElementById(&quot;foto&quot;).style.display = &quot;flex&quot;;
+
+                    }</code></pre>
+
+                <div class="callout">
+                    <strong>Veel gebruikte style properties:</strong>
+                    <ul>
+                        <li><code>style.color</code> → tekstkleur</li>
+                        <li><code>style.backgroundColor</code> → achtergrondkleur</li>
+                        <li><code>style.display</code> → verbergen/tonen ("none" of "flex"/"block")</li>
+                        <li><code>style.fontSize</code> → lettergrootte (bijv. "20px")</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 id="veelgemaakte-fouten">🔥 Veelgemaakte fouten<a class="heading-link" href="#veelgemaakte-fouten" aria-label="Link naar 🔥 Veelgemaakte fouten">#</a></h2>
+
+                <div class="callout callout--warning">
+                    <code>function zegHallo</code> → <code>function zegHallo()</code> (haakjes!)<br>
+                    <code>onclick="zegHallo"</code> → <code>onclick="zegHallo()"</code> (haakjes!)<br>
+                    <code>style.background-color</code> → <code>style.backgroundColor</code> (camelCase)<br>
+                    Functienaam in HTML verschilt van JS → werkt niet!
+                </div>
+            </section>
+
+            <section>
+                <h2 id="debug-tips">Debug tips<a class="heading-link" href="#debug-tips" aria-label="Link naar Debug tips">#</a></h2>
+
+                <div class="callout">
+                    <strong>Test altijd in de console:</strong>
+                    <pre><code class="language-javascript">function test() {
+
+                          console.log(&quot;Functie
+                            werkt!&quot;);
+
+                        }</code></pre>
+                    <ul>
+                        <li>Zie je dit in de console? → Functie werkt</li>
+                        <li>Zie je niks? → Check of onclick goed geschreven is</li>
+                        <li>Check of je id's exact hetzelfde zijn!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 id="stappenplan-opdracht-dark-mode">Stappenplan Opdracht Dark Mode<a class="heading-link" href="#stappenplan-opdracht-dark-mode" aria-label="Link naar Stappenplan Opdracht Dark Mode">#</a></h2>
+
+                <div class="callout">
+                    <ol>
+                        <li>Maak functie <code>darkMode()</code></li>
+                        <li>Selecteer element met <code>getElementById</code></li>
+                        <li>Verander <code>style.backgroundColor</code> en <code>style.color</code></li>
+                        <li>Verberg/toon iconen met <code>style.display</code></li>
+                        <li>Koppel functie aan knop met <code>onclick</code></li>
+                    </ol>
+                </div>
+            </section></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

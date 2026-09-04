@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 5 - Arrays en willekeurige keuzes uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 5 - Arrays en willekeurige keuzes | JavaScript Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html" aria-current="page">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 5</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 5</p><h1>Arrays en willekeurige keuzes</h1></div></header><article class="lesson-content container"><section>
+            <h2 id="arrays-lijsten">Arrays (lijsten)<a class="heading-link" href="#arrays-lijsten" aria-label="Link naar Arrays (lijsten)">#</a></h2>
+
+            <div class="callout">
+                <strong>Wat is een array?</strong><br>
+                Een array is een lijst met meerdere waardes. In plaats van voor elke waarde een aparte variabele te
+                maken, kun je alles in één lijst stoppen.
+            </div>
+
+            <h3>Array maken:</h3>
+            <pre><code class="language-javascript">let eten = [&quot;pizza&quot;, &quot;pasta&quot;, &quot;burger&quot;, &quot;sushi&quot;];</code></pre>
+
+            <div class="callout">
+                Een array maak je met vierkante haken <code>[ ]</code> en waardes scheid je met komma's.
+            </div>
+
+            <h3>Array uitlezen:</h3>
+            <pre><code class="language-javascript">let eten = [&quot;pizza&quot;, &quot;pasta&quot;, &quot;burger&quot;, &quot;sushi&quot;];
+
+
+                console.log(eten[0]); // &quot;pizza&quot;
+
+                console.log(eten[1]); // &quot;pasta&quot;
+
+                console.log(eten[2]); // &quot;burger&quot;
+
+                console.log(eten[3]); // &quot;sushi&quot;</code></pre>
+
+            <div class="callout">
+                <strong>Let op:</strong> Arrays beginnen bij 0! Het eerste item is <code>[0]</code>, niet
+                <code>[1]</code>.
+            </div>
+        </section>
+
+        <section>
+            <h2 id="array-lengte">Array lengte<a class="heading-link" href="#array-lengte" aria-label="Link naar Array lengte">#</a></h2>
+
+            <div class="callout">
+                Met <code>.length</code> kun je zien hoeveel items er in een array zitten.
+            </div>
+
+            <pre><code class="language-javascript">let kleuren = [&quot;rood&quot;, &quot;blauw&quot;, &quot;groen&quot;];
+
+
+                console.log(kleuren.length); // 3</code></pre>
+
+            <h3>Laatste item pakken:</h3>
+            <pre><code class="language-javascript">let kleuren = [&quot;rood&quot;, &quot;blauw&quot;, &quot;groen&quot;];
+
+                let laatste = kleuren[kleuren.length -
+                1];
+
+                console.log(laatste); // &quot;groen&quot;</code></pre>
+
+            <div class="callout">
+                We doen <code>-1</code> omdat arrays bij 0 beginnen. Als er 3 items zijn, is het laatste item op
+                index 2.
+            </div>
+        </section>
+
+        <section>
+            <h2 id="math-random-willekeurig-getal">Math.random (willekeurig getal)<a class="heading-link" href="#math-random-willekeurig-getal" aria-label="Link naar Math.random (willekeurig getal)">#</a></h2>
+
+            <div class="callout">
+                <strong>Wat is Math.random?</strong><br>
+                <code>Math.random()</code> geeft een willekeurig getal tussen 0 en 1 (bijvoorbeeld 0.7382).
+            </div>
+
+            <pre><code class="language-javascript">console.log(Math.random()); // bijv. 0.4273819</code></pre>
+
+            <h3>Random getal tussen 0 en 10:</h3>
+            <pre><code class="language-javascript">let random = Math.random() * 10;
+
+                console.log(random); // bijv. 7.382910</code></pre>
+
+            <h3>Afgerond naar beneden met Math.floor:</h3>
+            <pre><code class="language-javascript">let random = Math.floor(Math.random() * 10);
+
+                console.log(random); // bijv. 7 (heel
+                        getal)</code></pre>
+
+            <div class="callout">
+                <strong>Math.floor:</strong> rondt af naar beneden. <code>Math.floor(7.9)</code> wordt
+                <code>7</code>.
+            </div>
+        </section>
+
+        <section>
+            <h2 id="random-item-uit-array">Random item uit array<a class="heading-link" href="#random-item-uit-array" aria-label="Link naar Random item uit array">#</a></h2>
+
+            <div class="callout">
+                Combineer arrays met <code>Math.random()</code> om een willekeurig item te kiezen.
+            </div>
+
+            <h3>Stap voor stap:</h3>
+            <pre><code class="language-javascript">let eten = [&quot;pizza&quot;, &quot;pasta&quot;, &quot;burger&quot;, &quot;sushi&quot;];
+
+
+                // Stap 1: Random getal tussen 0 en 4
+
+                let randomIndex = Math.floor(Math.random() * eten.length);
+
+
+                // Stap 2: Pak item op die index
+
+                let randomEten = eten[randomIndex];
+
+
+                console.log(randomEten); // bijv.
+                        &quot;burger&quot;</code></pre>
+
+            <h3>In één regel:</h3>
+            <pre><code class="language-javascript">let eten = [&quot;pizza&quot;, &quot;pasta&quot;, &quot;burger&quot;, &quot;sushi&quot;];
+
+                let randomEten = eten[Math.floor(Math.random() * eten.length)];
+
+                console.log(randomEten);</code></pre>
+        </section>
+
+        <section>
+            <h2 id="input-uitlezen-met-value">Input uitlezen met .value<a class="heading-link" href="#input-uitlezen-met-value" aria-label="Link naar Input uitlezen met .value">#</a></h2>
+
+            <div class="callout">
+                <strong>Wat is .value?</strong><br>
+                Met <code>.value</code> kun je tekst uit een input veld halen die de gebruiker heeft getypt.
+            </div>
+
+            <h3>Verschil tussen element en waarde:</h3>
+            <pre><code class="language-javascript">let input = document.getElementById(&quot;naamVeld&quot;);
+
+                console.log(input); // Dit is het hele HTML
+                        element
+
+                console.log(input.value); // Dit is alleen de tekst die de gebruiker typte</code></pre>
+
+            <div class="callout">
+                <strong>Onthoud:</strong>
+                <ul>
+                    <li><code>getElementById</code> geeft je het hele element</li>
+                    <li><code>.value</code> geeft je alleen de tekst erin</li>
+                </ul>
+            </div>
+
+            <h3>Stap voor stap voorbeeld:</h3>
+            <div class="two-column">
+                <div>
+                    <strong>HTML:</strong>
+                    <pre><code class="language-javascript">&lt;input type=&quot;text&quot; id=&quot;naamVeld&quot; placeholder=&quot;Je naam&quot;&gt;
+
+                        &lt;button id=&quot;verzendKnop&quot;&gt;Verzend&lt;/button&gt;
+
+                        &lt;p id=&quot;resultaat&quot;&gt;&lt;/p&gt;</code></pre>
+                </div>
+                <div>
+                    <strong>JavaScript:</strong>
+                    <pre><code class="language-javascript">let knop = document.getElementById(&quot;verzendKnop&quot;);
+
+
+                        knop.addEventListener(&quot;click&quot;,
+                        begroet);
+
+
+                        function begroet() {
+
+                          // Stap 1: Pak het input element
+
+                          let inputElement = document.getElementById(&quot;naamVeld&quot;);
+
+                          
+
+                          // Stap 2: Haal de waarde (tekst) eruit
+
+                          let naam = inputElement.value;
+
+                          
+
+                          // Stap 3: Gebruik de waarde
+
+                          let resultaat = document.getElementById(&quot;resultaat&quot;);
+
+                          resultaat.innerHTML = &quot;Hallo
+                                &quot; + naam + &quot;!&quot;;
+
+                        }</code></pre>
+                </div>
+            </div>
+
+            <h3>Korte versie (in één regel):</h3>
+            <pre><code class="language-javascript">function begroet() {
+
+                  // Je kunt het ook in één keer doen:
+
+                  let naam = document.getElementById(&quot;naamVeld&quot;).value;
+
+                  
+
+                  let resultaat = document.getElementById(&quot;resultaat&quot;);
+
+                  resultaat.innerHTML = &quot;Hallo &quot;
+                + naam + &quot;!&quot;;
+
+                }</code></pre>
+
+            <h3>Controleren of input leeg is:</h3>
+            <div class="callout">
+                Gebruikers vergeten vaak iets in te vullen. Daarom moet je altijd checken of de input niet leeg is!
+            </div>
+
+            <pre><code class="language-javascript">function begroet() {
+
+                  let naam = document.getElementById(&quot;naamVeld&quot;).value;
+
+                  
+
+                  // Check: is de input leeg?
+
+                  if (naam === &quot;&quot;) {
+
+                    alert(&quot;Vul een naam
+                        in!&quot;);
+
+                  } else {
+
+                    let resultaat = document.getElementById(&quot;resultaat&quot;);
+
+                    resultaat.innerHTML = &quot;Hallo &quot; + naam + &quot;!&quot;;
+
+                  }
+
+                }</code></pre>
+
+            <div class="callout">
+                <strong>Waarom is dit belangrijk?</strong>
+                <ul>
+                    <li>Als de input leeg is, krijg je "Hallo !" zonder naam</li>
+                    <li>Door te checken kun je de gebruiker een duidelijke melding geven</li>
+                    <li>Dit noemen we <strong>input validatie</strong></li>
+                </ul>
+            </div>
+
+            <h3>Veelgemaakte fout:</h3>
+            <div class="callout callout--warning">
+                <strong>Dit werkt NIET:</strong>
+                <pre><code class="language-javascript">let naam = document.getElementById(&quot;naamVeld&quot;);
+
+                    resultaat.innerHTML = &quot;Hallo &quot; + naam;
+                    // ❌ naam is het hele element!</code></pre>
+                <strong>Dit werkt WEL:</strong>
+                <pre><code class="language-javascript">let naam = document.getElementById(&quot;naamVeld&quot;).value;
+
+                    resultaat.innerHTML = &quot;Hallo &quot; + naam;
+                    // ✅ naam is de tekst!</code></pre>
+            </div>
+        </section>
+
+
+        <section>
+            <h2 id="veelgemaakte-fouten">Veelgemaakte fouten<a class="heading-link" href="#veelgemaakte-fouten" aria-label="Link naar Veelgemaakte fouten">#</a></h2>
+
+            <div class="callout callout--warning">
+                <ul>
+                    <li>Vergeten dat arrays bij 0 beginnen → <code>array[1]</code> is het tweede item</li>
+                    <li><code>Math.random</code> zonder <code>Math.floor</code> → krijg je een kommagetal</li>
+                    <li>Vergeten <code>.value</code> te gebruiken → je krijgt het hele element in plaats van de
+                        tekst
+                    </li>
+                    <li>Niet checken of input leeg is → geeft lege resultaten</li>
+                    <li><code>array.lenght</code> → moet <code>array.length</code> zijn (geen h!)</li>
+                </ul>
+            </div>
+        </section></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

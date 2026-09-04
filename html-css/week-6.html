@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 6 - Flexbox uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 6 - Flexbox | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html" aria-current="page">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 6</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 6</p><h1>Flexbox</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>Flexbox is een CSS-layouttechniek waarmee je elementen snel en overzichtelijk naast of onder elkaar plaatst. De beschikbare ruimte kan automatisch over de elementen worden verdeeld, ook wanneer hun afmetingen verschillen.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik leg uit wat Flexbox is.</li>
+<li>Ik pas Flexbox toe om elementen te positioneren.</li>
+<li>Ik weet hoe en wanneer Flexbox wordt toegepast.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#flexbox-in-het-kort">Flexbox in het kort</a></li>
+<li><a href="#flexcontainer-en-flexitems">Flexcontainer en flexitems</a></li>
+<li><a href="#hoofdas-en-dwarsas">Hoofdas en dwarsas</a></li>
+<li><a href="#flex-direction">Flex direction</a></li>
+<li><a href="#flex-wrap">Flex wrap</a></li>
+<li><a href="#justify-content">Justify content</a></li>
+<li><a href="#align-items">Align items</a></li>
+<li><a href="#align-content">Align content</a></li>
+<li><a href="#gap">Gap</a></li>
+<li><a href="#instellingen-voor-flexitems">Instellingen voor flexitems</a></li>
+<li><a href="#wanneer-flexbox-past">Wanneer Flexbox past</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="flexbox-in-het-kort">Flexbox in het kort<a class="heading-link" href="#flexbox-in-het-kort" aria-label="Link naar Flexbox in het kort">#</a></h2>
+<p>Flexbox regelt de plaats van elementen die direct binnen één omliggend element staan. Het is vooral geschikt voor één richting: een rij naast elkaar of een kolom onder elkaar.</p>
+<pre><code class="language-css">.container {
+  display: flex;
+}
+</code></pre>
+<p>Zodra het omliggende element <code>display: flex</code> krijgt, worden de elementen die er direct in staan flexitems. De items worden standaard naast elkaar geplaatst.</p>
+<h2 id="flexcontainer-en-flexitems">Flexcontainer en flexitems<a class="heading-link" href="#flexcontainer-en-flexitems" aria-label="Link naar Flexcontainer en flexitems">#</a></h2>
+<p>Het omliggende element met <code>display: flex</code> heet de <strong>flexcontainer</strong>. De elementen die daar direct in staan, heten <strong>flexitems</strong>.</p>
+<pre><code class="language-html">&lt;div class=&quot;card-row&quot;&gt;
+  &lt;article class=&quot;card&quot;&gt;HTML&lt;/article&gt;
+  &lt;article class=&quot;card&quot;&gt;CSS&lt;/article&gt;
+  &lt;article class=&quot;card&quot;&gt;Flexbox&lt;/article&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">.card-row {
+  display: flex;
+}
+</code></pre>
+<p><code>.card-row</code> is de flexcontainer. De drie <code>.card</code>-elementen zijn flexitems. Elementen die binnen een card staan, horen bij die card en zijn niet automatisch flexitems van <code>.card-row</code>.</p>
+<p>CSS-instellingen voor de container regelen de groep als geheel. Instellingen voor flexitems regelen één afzonderlijk item.</p>
+<h2 id="hoofdas-en-dwarsas">Hoofdas en dwarsas<a class="heading-link" href="#hoofdas-en-dwarsas" aria-label="Link naar Hoofdas en dwarsas">#</a></h2>
+<p>Flexitems worden langs twee assen geplaatst:</p>
+<ul>
+<li>De <strong>main axis</strong> is de hoofdas waarlangs de items worden verdeeld.</li>
+<li>De <strong>cross axis</strong> staat dwars op de hoofdas.</li>
+<li><strong>main-start</strong> en <strong>main-end</strong> zijn het begin en einde van de hoofdas.</li>
+<li><strong>cross-start</strong> en <strong>cross-end</strong> zijn het begin en einde van de dwarsas.</li>
+</ul>
+<p>Bij <code>flex-direction: row</code> loopt de hoofdas normaal horizontaal en de dwarsas verticaal. Bij <code>flex-direction: column</code> draait dit om. De hoofdas is dus niet altijd horizontaal.</p>
+<h2 id="flex-direction">Flex direction<a class="heading-link" href="#flex-direction" aria-label="Link naar Flex direction">#</a></h2>
+<p><code>flex-direction</code> bepaalt de richting van de hoofdas.</p>
+<pre><code class="language-css">.container {
+  display: flex;
+  flex-direction: row;
+}
+</code></pre>
+<p>De mogelijke waarden zijn:</p>
+<ul>
+<li><code>row</code> - items staan in een rij; dit is de standaardwaarde.</li>
+<li><code>row-reverse</code> - items staan in omgekeerde rijrichting.</li>
+<li><code>column</code> - items staan onder elkaar in een kolom.</li>
+<li><code>column-reverse</code> - items staan in omgekeerde kolomrichting.</li>
+</ul>
+<p>De visuele volgorde veranderen met <code>reverse</code> verandert niet de volgorde in de HTML. Houd de HTML-volgorde logisch voor toetsenbord- en schermlezers.</p>
+<h2 id="flex-wrap">Flex wrap<a class="heading-link" href="#flex-wrap" aria-label="Link naar Flex wrap">#</a></h2>
+<p>Standaard probeert Flexbox alle items op één regel te plaatsen. Met <code>flex-wrap: wrap</code> mogen items naar een volgende regel doorschuiven wanneer er onvoldoende ruimte is.</p>
+<pre><code class="language-css">.card-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+</code></pre>
+<p>Veelgebruikte waarden zijn <code>nowrap</code>, <code>wrap</code> en <code>wrap-reverse</code>. Voor een flexibel kaartenoverzicht is <code>wrap</code> meestal de bruikbare keuze.</p>
+<p>De eigenschappen <code>flex-direction</code> en <code>flex-wrap</code> kunnen samen kort worden geschreven met <code>flex-flow</code>:</p>
+<pre><code class="language-css">.card-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+</code></pre>
+<h2 id="justify-content">Justify content<a class="heading-link" href="#justify-content" aria-label="Link naar Justify content">#</a></h2>
+<p><code>justify-content</code> verdeelt flexitems langs de hoofdas.</p>
+<pre><code class="language-css">.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+</code></pre>
+<p>Veelgebruikte waarden zijn:</p>
+<ul>
+<li><code>flex-start</code> - items staan aan het begin van de hoofdas.</li>
+<li><code>center</code> - items staan in het midden.</li>
+<li><code>flex-end</code> - items staan aan het einde.</li>
+<li><code>space-between</code> - vrije ruimte staat tussen de items.</li>
+<li><code>space-around</code> - ieder item krijgt ruimte eromheen.</li>
+<li><code>space-evenly</code> - alle tussenruimtes zijn even groot.</li>
+</ul>
+<h2 id="align-items">Align items<a class="heading-link" href="#align-items" aria-label="Link naar Align items">#</a></h2>
+<p><code>align-items</code> lijnt alle items langs de dwarsas uit.</p>
+<pre><code class="language-css">.navigation {
+  display: flex;
+  align-items: center;
+}
+</code></pre>
+<p>Veelgebruikte waarden zijn <code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>flex-end</code> en <code>baseline</code>. <code>stretch</code> is standaard en kan items op de dwarsas uitrekken wanneer ze daar geen vaste afmeting hebben.</p>
+<h2 id="align-content">Align content<a class="heading-link" href="#align-content" aria-label="Link naar Align content">#</a></h2>
+<p><code>align-content</code> verdeelt meerdere rijen of kolommen binnen de beschikbare ruimte. Deze eigenschap heeft alleen zichtbaar effect als de items over meerdere regels staan en er extra ruimte in de container is.</p>
+<pre><code class="language-css">.card-row {
+  display: flex;
+  min-height: 500px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+</code></pre>
+<p>Gebruik <code>align-items</code> voor de uitlijning van items binnen een regel en <code>align-content</code> voor de verdeling van meerdere regels.</p>
+<h2 id="gap">Gap<a class="heading-link" href="#gap" aria-label="Link naar Gap">#</a></h2>
+<p>Met <code>gap</code> maak je gelijke ruimte tussen flexitems zonder losse margins op ieder item.</p>
+<pre><code class="language-css">.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+</code></pre>
+<p>Je kunt rij- en kolomruimte apart instellen:</p>
+<pre><code class="language-css">.card-row {
+  row-gap: 16px;
+  column-gap: 24px;
+}
+</code></pre>
+<h2 id="instellingen-voor-flexitems">Instellingen voor flexitems<a class="heading-link" href="#instellingen-voor-flexitems" aria-label="Link naar Instellingen voor flexitems">#</a></h2>
+<p>Een flexitem kan eigen instellingen krijgen.</p>
+<pre><code class="language-css">.card {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 240px;
+}
+</code></pre>
+<ul>
+<li><code>flex-grow</code> bepaalt hoeveel een item mag groeien wanneer ruimte overblijft.</li>
+<li><code>flex-shrink</code> bepaalt hoeveel een item mag krimpen wanneer er te weinig ruimte is.</li>
+<li><code>flex-basis</code> bepaalt de beginmaat langs de hoofdas.</li>
+</ul>
+<p>De korte schrijfwijze <code>flex</code> combineert deze drie waarden:</p>
+<pre><code class="language-css">.card {
+  flex: 1 1 240px;
+}
+</code></pre>
+<p>Andere eigenschappen voor een flexitem zijn:</p>
+<pre><code class="language-css">.belangrijk {
+  order: -1;
+  align-self: flex-start;
+}
+</code></pre>
+<ul>
+<li><code>order</code> verandert de visuele volgorde. Gebruik dit terughoudend, omdat de HTML- en toetsenbordvolgorde niet meeveranderen.</li>
+<li><code>align-self</code> wijkt voor één item af van de <code>align-items</code>-waarde van de container.</li>
+</ul>
+<h2 id="wanneer-flexbox-past">Wanneer Flexbox past<a class="heading-link" href="#wanneer-flexbox-past" aria-label="Link naar Wanneer Flexbox past">#</a></h2>
+<p>Flexbox is geschikt wanneer een groep elementen hoofdzakelijk in één richting wordt verdeeld of uitgelijnd, bijvoorbeeld:</p>
+<ul>
+<li>een navigatiebalk;</li>
+<li>knoppen die naast elkaar staan;</li>
+<li>kaarten die mogen doorlopen naar een volgende regel;</li>
+<li>een element horizontaal en verticaal centreren;</li>
+<li>ruimte verdelen tussen een logo en navigatielinks.</li>
+</ul>
+<pre><code class="language-css">.centered {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+}
+</code></pre>
+<p>Flexbox vervangt veel pagina-indelingen waarvoor vroeger <code>float</code> of ingewikkelde andere oplossingen werden gebruikt. Je kunt Flexbox ook combineren met media queries om de indeling op verschillende schermformaten aan te passen.</p>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>Het omliggende element met <code>display: flex</code> is de flexcontainer; de elementen die er direct in staan zijn flexitems.</li>
+<li><code>flex-direction</code> bepaalt de hoofdas.</li>
+<li><code>justify-content</code> werkt langs de hoofdas en <code>align-items</code> langs de dwarsas.</li>
+<li>Met <code>flex-wrap</code> mogen items naar een volgende regel.</li>
+<li><code>gap</code> maakt consistente ruimte tussen items.</li>
+<li>Gebruik Flexbox vooral voor layouts in één richting: een rij of een kolom.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="week-5.html">Week 5 - Box model, position, float, dropdown en z-index</a></li>
+<li>Volgende: <a href="week-7.html">Week 7 - Responsive webdesign</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

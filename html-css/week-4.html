@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 4 - CSS, kleuren en fonts uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 4 - CSS, kleuren en fonts | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html" aria-current="page">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 4</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 4</p><h1>CSS, kleuren en fonts</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>CSS staat voor Cascading Style Sheets en bepaalt de vormgeving van een HTML-document. Deze week leer je hoe een CSS-regel is opgebouwd, hoe je HTML-elementen kiest voor styling en hoe je kleur en tekst aanpast.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik leg uit hoe CSS-syntax is opgebouwd.</li>
+<li>Ik pas kleuren aan met CSS.</li>
+<li>Ik pas tekststijlen aan met CSS.</li>
+<li>Ik leg uit wat fonts zijn en hoe je ze aanpast.</li>
+<li>Ik laad fonts uit een externe bron in.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#css-syntax">CSS-syntax</a></li>
+<li><a href="#tagselectors">Tagselectors</a></li>
+<li><a href="#class-selectors">Class selectors</a></li>
+<li><a href="#id-selectors">ID selectors</a></li>
+<li><a href="#tekstkleur">Tekstkleur</a></li>
+<li><a href="#hex-kleuren">HEX-kleuren</a></li>
+<li><a href="#rgb-en-rgba">RGB en RGBA</a></li>
+<li><a href="#font-family">Font family</a></li>
+<li><a href="#font-weight">Font weight</a></li>
+<li><a href="#font-size">Font size</a></li>
+<li><a href="#externe-fonts">Externe fonts</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="css-syntax">CSS-syntax<a class="heading-link" href="#css-syntax" aria-label="Link naar CSS-syntax">#</a></h2>
+<p>Een CSS-regel vertelt welk HTML-element je wilt aanpassen en welke vormgeving het krijgt. Het deel vóór de accolades heet de <strong>selector</strong>. Tussen de accolades staan één of meer instellingen.</p>
+<pre><code class="language-css">p {
+  color: gray;
+  font-size: 18px;
+}
+</code></pre>
+<ul>
+<li><code>p</code> is de selector en bepaalt welk HTML-element wordt geselecteerd.</li>
+<li>Tussen de accolades staan de CSS-instellingen. Dit deel heet ook het <strong>declaration block</strong>.</li>
+<li><code>color</code> en <code>font-size</code> zijn eigenschappen. In CSS worden die <strong>properties</strong> genoemd.</li>
+<li><code>gray</code> en <code>18px</code> zijn de ingestelde waarden. In CSS worden die <strong>values</strong> genoemd.</li>
+<li>Iedere declaratie eindigt met een puntkomma.</li>
+</ul>
+<h2 id="tagselectors">Tagselectors<a class="heading-link" href="#tagselectors" aria-label="Link naar Tagselectors">#</a></h2>
+<p>Een tagselector kiest alle elementen met dezelfde HTML-tag zodat je ze dezelfde vormgeving kunt geven.</p>
+<pre><code class="language-css">h1 {
+  color: navy;
+}
+</code></pre>
+<p>Deze regel geeft alle <code>&lt;h1&gt;</code>-elementen een donkerblauwe tekstkleur. Een tagselector is handig voor een algemene basisstijl.</p>
+<h2 id="class-selectors">Class selectors<a class="heading-link" href="#class-selectors" aria-label="Link naar Class selectors">#</a></h2>
+<p>Met een class geef je één of meerdere elementen een herbruikbare naam. In CSS herken je een class selector aan de punt.</p>
+<pre><code class="language-html">&lt;p class=&quot;intro&quot;&gt;Dit is de introductie.&lt;/p&gt;
+&lt;p&gt;Dit is een gewone alinea.&lt;/p&gt;
+</code></pre>
+<pre><code class="language-css">.intro {
+  font-weight: bold;
+}
+</code></pre>
+<p>De class <code>intro</code> mag op meerdere elementen worden gebruikt. Gebruik classes voor styling die je wilt herhalen.</p>
+<h2 id="id-selectors">ID selectors<a class="heading-link" href="#id-selectors" aria-label="Link naar ID selectors">#</a></h2>
+<p>Een id identificeert één uniek element op een pagina. In CSS herken je een ID selector aan het hekje.</p>
+<pre><code class="language-html">&lt;header id=&quot;page-header&quot;&gt;...&lt;/header&gt;
+</code></pre>
+<pre><code class="language-css">#page-header {
+  background-color: lightblue;
+}
+</code></pre>
+<p>Een class kan meerdere keren worden gebruikt. Een id moet uniek zijn binnen dezelfde HTML-pagina.</p>
+<h2 id="tekstkleur">Tekstkleur<a class="heading-link" href="#tekstkleur" aria-label="Link naar Tekstkleur">#</a></h2>
+<p>Met de property <code>color</code> verander je de tekstkleur.</p>
+<pre><code class="language-css">p {
+  color: gray;
+}
+</code></pre>
+<p>De property heet <code>color</code>, niet <code>font-color</code>. Voor een achtergrondkleur gebruik je <code>background-color</code>.</p>
+<pre><code class="language-css">section {
+  color: navy;
+  background-color: lightyellow;
+}
+</code></pre>
+<h2 id="hex-kleuren">HEX-kleuren<a class="heading-link" href="#hex-kleuren" aria-label="Link naar HEX-kleuren">#</a></h2>
+<p>CSS kent kleurnamen zoals <code>red</code>, <code>gray</code> en <code>blue</code>. Met een HEX-code kun je veel nauwkeuriger een kleur kiezen. Een HEX-code begint met <code>#</code> en bevat zes tekens.</p>
+<pre><code class="language-css">h1 {
+  color: #36559e;
+}
+</code></pre>
+<p>De eerste twee tekens bepalen rood, de volgende twee groen en de laatste twee blauw. Waarden lopen van <code>00</code> tot <code>ff</code>.</p>
+<h2 id="rgb-en-rgba">RGB en RGBA<a class="heading-link" href="#rgb-en-rgba" aria-label="Link naar RGB en RGBA">#</a></h2>
+<p>RGB staat voor red, green en blue. Iedere kleurwaarde ligt tussen 0 en 255.</p>
+<pre><code class="language-css">p {
+  color: rgb(54, 85, 158);
+}
+</code></pre>
+<p>RGBA voegt alpha toe. Alpha bepaalt de doorzichtigheid en loopt van 0 tot 1.</p>
+<pre><code class="language-css">.overlay {
+  background-color: rgba(54, 85, 158, 0.5);
+}
+</code></pre>
+<p>Bij <code>0</code> is de kleur volledig doorzichtig. Bij <code>1</code> is de kleur volledig zichtbaar.</p>
+<h2 id="font-family">Font family<a class="heading-link" href="#font-family" aria-label="Link naar Font family">#</a></h2>
+<p>Een font is een lettertype. Met <code>font-family</code> bepaal je welk lettertype de browser gebruikt. Zet daarna een reservelettertype, voor het geval het eerste font niet beschikbaar is. Zo&#39;n reservelettertype heet een <strong>fallback</strong>.</p>
+<pre><code class="language-css">p {
+  font-family: Verdana, sans-serif;
+}
+</code></pre>
+<p>De browser probeert eerst Verdana. Als dit lettertype ontbreekt, gebruikt de browser een beschikbaar sans-seriflettertype.</p>
+<h2 id="font-weight">Font weight<a class="heading-link" href="#font-weight" aria-label="Link naar Font weight">#</a></h2>
+<p>Met <code>font-weight</code> bepaal je hoe dik tekst wordt weergegeven.</p>
+<pre><code class="language-css">h2 {
+  font-weight: bold;
+}
+
+p {
+  font-weight: normal;
+}
+</code></pre>
+<p>Naast woorden zoals <code>normal</code> en <code>bold</code> ondersteunen veel fonts numerieke diktes, bijvoorbeeld <code>400</code> voor normaal en <code>700</code> voor vet.</p>
+<h2 id="font-size">Font size<a class="heading-link" href="#font-size" aria-label="Link naar Font size">#</a></h2>
+<p>Met <code>font-size</code> verander je de grootte van tekst.</p>
+<pre><code class="language-css">p {
+  font-size: 20px;
+}
+</code></pre>
+<p>De waarde <code>20px</code> betekent twintig pixels. Kies een tekstgrootte die prettig leesbaar blijft.</p>
+<h2 id="externe-fonts">Externe fonts<a class="heading-link" href="#externe-fonts" aria-label="Link naar Externe fonts">#</a></h2>
+<p>Een extern font, bijvoorbeeld van Google Fonts, wordt eerst in de <code>&lt;head&gt;</code> van het HTML-document geladen.</p>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+<p>Daarna gebruik je de fontnaam in CSS:</p>
+<pre><code class="language-css">body {
+  font-family: &quot;Roboto&quot;, sans-serif;
+}
+</code></pre>
+<p>Laad alleen de fontdiktes die je daadwerkelijk gebruikt. Kies voor gewone tekst altijd een goed leesbaar lettertype.</p>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>Een CSS-regel bevat een selector, eigenschappen en ingestelde waarden.</li>
+<li>Een class is herbruikbaar; een id is uniek op de pagina.</li>
+<li>Tekstkleur stel je in met <code>color</code>.</li>
+<li>CSS ondersteunt kleurnamen, HEX, RGB en RGBA.</li>
+<li>Gebruik <code>font-family</code>, <code>font-weight</code> en <code>font-size</code> voor typografie.</li>
+<li>Een extern font moet eerst worden geladen voordat CSS het kan toepassen.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="week-3.html">Week 3 - HTML-tags, formulieren en tabellen</a></li>
+<li>Volgende: <a href="week-5.html">Week 5 - Box model, position, float, dropdown en z-index</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

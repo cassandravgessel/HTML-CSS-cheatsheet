@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 3 · Week 5 - Backend Validatie uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 3 · Week 5 - Backend Validatie | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-3/week-01.html">Week 1</a></li><li><a href="../periode-3/week-02.html">Week 2</a></li><li><a href="../periode-3/week-03.html">Week 3</a></li><li><a href="../periode-3/week-04.html">Week 4</a></li><li><a href="../periode-3/week-05.html" aria-current="page">Week 5</a></li><li><a href="../periode-3/week-06.html">Week 6</a></li><li><a href="../periode-3/week-07.html">Week 7</a></li><li><a href="../periode-3/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 3 · Week 5</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 3 · Week 5</p><h1>Backend Validatie</h1></div></header><article class="lesson-content container"><h2 id="wat-moet-je-kennen-samenvatting">Wat moet je kennen (samenvatting)<a class="heading-link" href="#wat-moet-je-kennen-samenvatting" aria-label="Link naar Wat moet je kennen (samenvatting)">#</a></h2>
+<ul>
+<li>Waarom backend validatie nodig is</li>
+<li><code>trim()</code> gebruiken</li>
+<li><code>empty()</code> controleren</li>
+<li><code>strlen()</code> gebruiken voor minimale lengte</li>
+<li><code>is_numeric()</code> gebruiken voor getallen</li>
+<li><code>exit;</code> gebruiken om uitvoering te stoppen</li>
+</ul>
+<h2 id="1-waarom-backend-validatie">1. Waarom backend validatie?<a class="heading-link" href="#1-waarom-backend-validatie" aria-label="Link naar 1. Waarom backend validatie?">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>HTML-validatie (zoals <code>required</code>) kan worden omzeild.<br>Daarom controleer je invoer altijd opnieuw in PHP.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Frontend validatie is niet genoeg</li>
+<li>Server controleert altijd</li>
+<li>Foute invoer moet worden gestopt</li>
+</ul>
+<blockquote><p><strong>Onthoud:</strong> De server beslist. Niet de browser.</p></blockquote>
+<h2 id="2-lege-velden-controleren">2. Lege velden controleren<a class="heading-link" href="#2-lege-velden-controleren" aria-label="Link naar 2. Lege velden controleren">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Met <code>empty()</code> controleer je of een veld leeg is.<br>Met <code>trim()</code> verwijder je spaties aan het begin en einde.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>trim()</code></li>
+<li><code>empty()</code></li>
+<li><code>exit;</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$naam = trim($_POST['naam'] ?? '');
+
+if (empty($naam)) {
+    echo "Naam is verplicht.";
+    exit;
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Eerst opschonen (<code>trim()</code>), daarna controleren.</p></blockquote>
+<h2 id="3-minimale-lengte-controleren">3. Minimale lengte controleren<a class="heading-link" href="#3-minimale-lengte-controleren" aria-label="Link naar 3. Minimale lengte controleren">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Soms moet invoer een minimale lengte hebben.<br>Bijvoorbeeld: minimaal 3 karakters.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>strlen()</code></li>
+<li>Vergelijken met <code>&lt;</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">if (strlen($naam) &lt; 3) {
+    echo "Naam moet minimaal 3 karakters hebben.";
+    exit;
+}</code></pre>
+<h2 id="4-controleren-of-iets-een-getal-is">4. Controleren of iets een getal is<a class="heading-link" href="#4-controleren-of-iets-een-getal-is" aria-label="Link naar 4. Controleren of iets een getal is">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Als een veld een getal moet zijn (bijv. leeftijd), controleer je dit expliciet.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>is_numeric()</code></li>
+<li>Negatie met <code>!</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$leeftijd = $_POST['leeftijd'] ?? '';
+
+if (!is_numeric($leeftijd)) {
+    echo "Leeftijd moet een getal zijn.";
+    exit;
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Vertrouw nooit blind op invoer.</p></blockquote>
+<h2 id="veelgemaakte-fouten-kort">Veelgemaakte fouten (kort)<a class="heading-link" href="#veelgemaakte-fouten-kort" aria-label="Link naar Veelgemaakte fouten (kort)">#</a></h2>
+<h3>1. Alleen HTML-validatie gebruiken</h3>
+<p>❌ Alleen <code>required</code> in je form zetten</p>
+<p>✅ Altijd ook controleren in PHP</p>
+<h3>2. trim vergeten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$naam = $_POST['naam'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$naam = trim($_POST['naam'] ?? '');</code></pre>
+<h3>3. Geen exit gebruiken</h3>
+<p>❌ Script gaat door na foutmelding</p>
+<p>✅ Gebruik <code>exit;</code> om verdere uitvoering te stoppen</p></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

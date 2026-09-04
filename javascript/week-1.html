@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 1 - Eerste stappen met JavaScript uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 1 - Eerste stappen met JavaScript | JavaScript Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html" aria-current="page">Week 1</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 1</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 1</p><h1>Eerste stappen met JavaScript</h1></div></header><article class="lesson-content container"><div>
+                <h2 id="variabelen-opslag-voor-gegevens">Variabelen (opslag voor gegevens)<a class="heading-link" href="#variabelen-opslag-voor-gegevens" aria-label="Link naar Variabelen (opslag voor gegevens)">#</a></h2>
+
+                <pre><code class="language-javascript">let naam = &quot;Jamal&quot;; // kan je later veranderen
+
+                    const geboortejaar = 2005; // kan NIET meer veranderen</code></pre>
+
+                <div class="callout">
+                    <strong>Wanneer gebruik je wat?</strong>
+                    <ul>
+                        <li><code>let</code> → waarde kan veranderen (bijv. score in game)</li>
+                        <li><code>const</code> → waarde blijft hetzelfde (bijv. je geboortejaar)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2 id="datatypes-soorten-gegevens">Datatypes (soorten gegevens)<a class="heading-link" href="#datatypes-soorten-gegevens" aria-label="Link naar Datatypes (soorten gegevens)">#</a></h2>
+
+                <pre><code class="language-javascript">let getal = 10; //
+                        number (getallen)
+
+                    let tekst = &quot;Hallo&quot;; // string (tekst, altijd tussen &quot;&quot;)
+
+                    let aanwezig = true; //
+                        boolean (true of false)</code></pre>
+
+                <div class="callout">
+                    <strong>LET OP het verschil:</strong>
+                    <pre><code class="language-javascript">10 + 10 // = 20
+                            (rekenen met getallen)
+
+                        &quot;10&quot; + &quot;10&quot; // =
+                            &quot;1010&quot; (plakken van tekst)</code></pre>
+                </div>
+            </div>
+
+            <section>
+                <h2 id="output-laten-zien-aan-gebruiker">Output (laten zien aan gebruiker)<a class="heading-link" href="#output-laten-zien-aan-gebruiker" aria-label="Link naar Output (laten zien aan gebruiker)">#</a></h2>
+
+                <div class="two-column">
+                    <div>
+                        <h3>In de console:</h3>
+                        <pre><code class="language-javascript">console.log(&quot;Test&quot;);</code></pre>
+                    </div>
+                    <div>
+                        <h3>Pop-up melding:</h3>
+                        <pre><code class="language-javascript">alert(&quot;Welkom!&quot;);</code></pre>
+                    </div>
+                </div>
+
+                <h3>In HTML schrijven:</h3>
+                <pre><code class="language-javascript">document.write(&quot;Hallo wereld&quot;);</code></pre>
+
+                <h3>HTML element veranderen:</h3>
+                <pre><code class="language-javascript">document.getElementById(&quot;titel&quot;).innerHTML = &quot;Nieuwe tekst&quot;;</code></pre>
+            </section>
+
+            <section>
+                <h2 id="input-vragen-aan-gebruiker">Input (vragen aan gebruiker)<a class="heading-link" href="#input-vragen-aan-gebruiker" aria-label="Link naar Input (vragen aan gebruiker)">#</a></h2>
+
+                <pre><code class="language-javascript">// Vraag stellen (pop-up)
+
+                    prompt(&quot;Wat is je naam?&quot;);
+
+
+                    // Antwoord opslaan in variabele
+
+                    let naam = prompt(&quot;Wat is je naam?&quot;);
+
+
+                    // Antwoord tonen op pagina
+
+                    document.write(&quot;Hallo &quot; + naam);</code></pre>
+            </section>
+
+            <section>
+                <h2 id="dom-selecteren-html-aanpassen">DOM selecteren (HTML aanpassen)<a class="heading-link" href="#dom-selecteren-html-aanpassen" aria-label="Link naar DOM selecteren (HTML aanpassen)">#</a></h2>
+
+                <div class="callout">
+                    <strong>Wat betekent het?</strong>
+                    <ul>
+                        <li><code>document</code> = je <strong>html</strong> bestand</li>
+                        <li><code>getElementById("titel")</code> = zoek een element met <strong>id="titel"</strong></li>
+                    </ul>
+                </div>
+
+                <div class="two-column">
+                    <div>
+                        <strong>HTML:</strong>
+                        <pre><code class="language-javascript">&lt;p id=&quot;begroeting&quot;&gt;Hallo&lt;/p&gt;</code></pre>
+                    </div>
+                    <div>
+                        <strong>JavaScript:</strong>
+                        <pre><code class="language-javascript">document.getElementById(&quot;begroeting&quot;).innerHTML = &quot;Hoi!&quot;;</code></pre>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Onthoud:</strong> <code>getElementById</code> zoekt het element met die id op
+                </div>
+            </section>
+            <section>
+                <h2 id="document-getelementbyid-uitleg">document.getElementById uitleg<a class="heading-link" href="#document-getelementbyid-uitleg" aria-label="Link naar document.getElementById uitleg">#</a></h2>
+
+                <div class="callout">
+                    <strong>Stapje voor stapje:</strong>
+                    <pre><code class="language-javascript">document.getElementById(&quot;titel&quot;)</code></pre>
+                    <div class="step">1. <code>document</code> → kijk in je HTML</div>
+                    <div class="step">2. <code>get</code> → pak</div>
+                    <div class="step">3. <code>ElementById</code> → een element met een bepaalde id</div>
+                    <div class="step">4. <code>("titel")</code> → namelijk id="titel"</div>
+                </div>
+
+                <h3>Voorbeeld:</h3>
+                <div class="two-column">
+                    <div>
+                        <strong>HTML:</strong>
+                        <pre><code class="language-javascript">&lt;h1 id=&quot;titel&quot;&gt;Welkom&lt;/h1&gt;</code></pre>
+                    </div>
+                    <div>
+                        <strong>JavaScript:</strong>
+                        <pre><code class="language-javascript">// Pak de titel
+
+                            document.getElementById(&quot;titel&quot;)
+
+
+                            // Maak hem rood
+
+                            document.getElementById(&quot;titel&quot;).style.color = &quot;red&quot;;</code></pre>
+                    </div>
+                </div>
+
+                <div class="callout callout--warning">
+                    <strong>Let op:</strong> Je id in HTML moet <strong>exact</strong> hetzelfde zijn als in JavaScript!
+                    (hoofdletters tellen)
+                </div>
+            </section>
+
+            <section>
+                <h2 id="teksten-samenvoegen">Teksten samenvoegen<a class="heading-link" href="#teksten-samenvoegen" aria-label="Link naar Teksten samenvoegen">#</a></h2>
+
+                <pre><code class="language-javascript">let voornaam = &quot;Ali&quot;;
+
+                    let achternaam = &quot;Bakker&quot;;
+
+
+                    // Met + plak je teksten aan elkaar
+
+                    let volledigeNaam = voornaam + &quot; &quot; +
+                    achternaam;
+
+                    // Resultaat: &quot;Ali Bakker&quot;
+
+
+                    document.write(&quot;Mijn naam is &quot; +
+                    volledigeNaam + &quot;!&quot;);
+
+                    // Resultaat: &quot;Mijn naam is Ali Bakker!&quot;</code></pre>
+            </section>
+
+            <section>
+                <h2 id="meest-gemaakte-fouten">Meest gemaakte fouten<a class="heading-link" href="#meest-gemaakte-fouten" aria-label="Link naar Meest gemaakte fouten">#</a></h2>
+
+                <div class="callout callout--warning">
+                    <code>Console.log</code> → <code>console.log</code> (kleine letter!)<br>
+                    <code>"tekst'</code> → <code>"tekst"</code> (zelfde soort aanhalingstekens)<br>
+                    <code>let naam = Jamal</code> → <code>let naam = "Jamal"</code> (tekst tussen "")<br>
+                    Geen id in HTML → JavaScript vindt element niet!
+                </div>
+            </section>
+
+            <section>
+                <h2 id="test-jezelf">Test jezelf<a class="heading-link" href="#test-jezelf" aria-label="Link naar Test jezelf">#</a></h2>
+
+                <div class="callout">
+                    <strong>Wat is de output?</strong>
+                    <pre><code class="language-javascript">let x = 5;
+
+                        let y = &quot;5&quot;;
+
+                        console.log(x + x); // = ?
+
+                        console.log(y + y); // = ?</code></pre>
+
+                    <strong>Antwoord:</strong>
+                    <ul>
+                        <li><code>10</code> (number + number = rekenen)</li>
+                        <li><code>"55"</code> (string + string = plakken)</li>
+                    </ul>
+                </div>
+            </section></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 3 · Week 8 - Overzicht &amp; Uitleggen uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 3 · Week 8 - Overzicht &amp; Uitleggen | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-3/week-01.html">Week 1</a></li><li><a href="../periode-3/week-02.html">Week 2</a></li><li><a href="../periode-3/week-03.html">Week 3</a></li><li><a href="../periode-3/week-04.html">Week 4</a></li><li><a href="../periode-3/week-05.html">Week 5</a></li><li><a href="../periode-3/week-06.html">Week 6</a></li><li><a href="../periode-3/week-07.html">Week 7</a></li><li><a href="../periode-3/week-08.html" aria-current="page">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 3 · Week 8</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 3 · Week 8</p><h1>Overzicht &amp; Uitleggen</h1></div></header><article class="lesson-content container"><h2 id="wat-moet-je-kennen-samenvatting">Wat moet je kennen (samenvatting)<a class="heading-link" href="#wat-moet-je-kennen-samenvatting" aria-label="Link naar Wat moet je kennen (samenvatting)">#</a></h2>
+<ul>
+<li>Hoe de volledige flow van je applicatie werkt</li>
+<li>PDO connectie</li>
+<li>SELECT + foreach (READ)</li>
+<li>INSERT + prepared statements (CREATE)</li>
+<li>Backend validatie</li>
+<li>Sessions voor feedback</li>
+<li>Redirect (PRG pattern)</li>
+<li>Werken met includes voor structuur</li>
+</ul>
+<h2 id="1-de-complete-applicatie-flow">1. De complete applicatie-flow<a class="heading-link" href="#1-de-complete-applicatie-flow" aria-label="Link naar 1. De complete applicatie-flow">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Je mini-app heeft nu een vaste structuur.<br>Elke actie volgt een logische volgorde.</p></blockquote>
+<h3>Flow-overzicht</h3>
+<pre data-lang="text"><code class="language-text">Connectie maken (PDO)
+↓
+SELECT uitvoeren
+↓
+Resultaten tonen (foreach)
+↓
+Formulier invullen (POST)
+↓
+Backend validatie
+↓
+INSERT uitvoeren (prepared statement)
+↓
+Session message zetten
+↓
+Redirect (PRG)
+↓
+Flash message tonen</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Elke stap heeft een duidelijke taak.</p></blockquote>
+<h2 id="2-structuur-van-je-project">2. Structuur van je project<a class="heading-link" href="#2-structuur-van-je-project" aria-label="Link naar 2. Structuur van je project">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Een professioneel project is logisch opgebouwd.<br>Je verdeelt verantwoordelijkheden over meerdere bestanden.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>includes/header.php</code></li>
+<li><code>includes/footer.php</code></li>
+<li><code>includes/db.php</code></li>
+<li>Scheiding van logica en HTML</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+require 'includes/db.php';
+require 'includes/header.php';
+?&gt;
+
+&lt;main&gt;
+  &lt;!-- content --&gt;
+&lt;/main&gt;
+
+&lt;?php require 'includes/footer.php'; ?&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Structuur maakt je project onderhoudbaar.</p></blockquote>
+<h2 id="3-studenten-moeten-kunnen-uitleggen">3. Studenten moeten kunnen uitleggen<a class="heading-link" href="#3-studenten-moeten-kunnen-uitleggen" aria-label="Link naar 3. Studenten moeten kunnen uitleggen">#</a></h2>
+<p>Je moet mondeling kunnen uitleggen:</p>
+<ul>
+<li>Wat PDO is en waarom we het gebruiken</li>
+<li>Waarom prepared statements belangrijk zijn</li>
+<li>Waarom backend validatie nodig is</li>
+<li>Waarom we redirect na POST gebruiken</li>
+<li>Waarom sessions nodig zijn</li>
+<li>Waarom we includes gebruiken</li>
+</ul>
+<h2 id="veelgemaakte-fouten-kort">Veelgemaakte fouten (kort)<a class="heading-link" href="#veelgemaakte-fouten-kort" aria-label="Link naar Veelgemaakte fouten (kort)">#</a></h2>
+<h3>1. Alles in één bestand zetten</h3>
+<p>❌ SQL, HTML, validatie en sessions in één groot index.php-bestand</p>
+<p>✅ Verdeel je code logisch over meerdere bestanden</p>
+<h3>2. exit vergeten na header()</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");
+exit;</code></pre>
+<h3>3. Geen duidelijke flow begrijpen</h3>
+<p>❌ Losse stukjes code zonder samenhang</p>
+<p>✅ Begrijpen hoe alle onderdelen samenwerken</p></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

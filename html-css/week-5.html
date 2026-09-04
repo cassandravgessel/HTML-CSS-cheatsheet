@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 5 - Box model, position, float, dropdown en z-index uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 5 - Box model, position, float, dropdown en z-index | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html" aria-current="page">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 5</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 5</p><h1>Box model, position, float, dropdown en z-index</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>Elk HTML-element wordt door de browser als een rechthoekig vak behandeld. Het box model beschrijft hoe de inhoud, binnenruimte, rand en buitenruimte van dat vak samenwerken. Met <code>position</code>, <code>float</code> en <code>z-index</code> bepaal je vervolgens hoe elementen op de pagina worden geplaatst en gestapeld.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik benoem het verschil tussen padding en margin.</li>
+<li>Ik pas padding en margin toe op de website.</li>
+<li>Ik positioneer elementen in een website met <code>position</code> en <code>float</code>.</li>
+<li>Ik maak een dropdownmenu met alleen CSS.</li>
+<li>Ik leg uit waarvoor je <code>z-index</code> gebruikt.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#het-box-model">Het box model</a></li>
+<li><a href="#padding">Padding</a></li>
+<li><a href="#margin">Margin</a></li>
+<li><a href="#meerdere-zijden-op-een-regel">Meerdere zijden op één regel</a></li>
+<li><a href="#een-basisreset">Een basisreset</a></li>
+<li><a href="#position">Position</a></li>
+<li><a href="#static">Static</a></li>
+<li><a href="#relative">Relative</a></li>
+<li><a href="#absolute">Absolute</a></li>
+<li><a href="#fixed">Fixed</a></li>
+<li><a href="#sticky">Sticky</a></li>
+<li><a href="#float">Float</a></li>
+<li><a href="#een-css-dropdownmenu">Een CSS-dropdownmenu</a></li>
+<li><a href="#z-index">Z-index</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="het-box-model">Het box model<a class="heading-link" href="#het-box-model" aria-label="Link naar Het box model">#</a></h2>
+<p>Het box model beschrijft de ruimte die een element inneemt. Van binnen naar buiten bestaat de box uit vier lagen:</p>
+<ol>
+<li><strong>Content</strong> - de tekst, afbeelding of andere inhoud van het element.</li>
+<li><strong>Padding</strong> - de transparante ruimte tussen de content en de border.</li>
+<li><strong>Border</strong> - de rand rond de content en padding.</li>
+<li><strong>Margin</strong> - de transparante ruimte buiten de border.</li>
+</ol>
+<pre><code class="language-css">.card {
+  width: 240px;
+  padding: 20px;
+  border: 2px solid black;
+  margin: 24px;
+}
+</code></pre>
+<p>De browsertools tonen het box model van een geselecteerd element. Daar zijn de afmetingen van content, padding, border en margin afzonderlijk zichtbaar.</p>
+<h2 id="padding">Padding<a class="heading-link" href="#padding" aria-label="Link naar Padding">#</a></h2>
+<p>Padding maakt ruimte <strong>binnen</strong> een element, tussen de inhoud en de rand. De achtergrond van het element loopt door achter de padding.</p>
+<pre><code class="language-css">button {
+  padding: 20px;
+  border: 2px solid black;
+}
+</code></pre>
+<p>Door de padding wordt de knop groter en komt de tekst verder van de rand te staan.</p>
+<p>Je kunt iedere zijde apart instellen:</p>
+<pre><code class="language-css">.card {
+  padding-top: 15px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+</code></pre>
+<h2 id="margin">Margin<a class="heading-link" href="#margin" aria-label="Link naar Margin">#</a></h2>
+<p>Margin maakt ruimte <strong>buiten</strong> een element. Hierdoor ontstaat afstand tussen de border van het element en omliggende elementen.</p>
+<pre><code class="language-css">button {
+  margin: 20px;
+}
+</code></pre>
+<p>Margin heeft geen eigen achtergrondkleur. Het gebied is doorzichtig, waardoor je de achtergrond van het omliggende element ziet.</p>
+<pre><code class="language-css">.card {
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+</code></pre>
+<h2 id="meerdere-zijden-op-een-regel">Meerdere zijden op één regel<a class="heading-link" href="#meerdere-zijden-op-een-regel" aria-label="Link naar Meerdere zijden op één regel">#</a></h2>
+<p>Je kunt de ruimte voor meerdere zijden op één regel schrijven. Deze korte schrijfwijze heet in CSS <strong>shorthand</strong>. Bij vier waarden loopt de volgorde met de klok mee: boven, rechts, onder en links.</p>
+<pre><code class="language-css">.card {
+  margin: 15px 20px 10px 5px;
+  padding: 12px 24px 16px 8px;
+}
+</code></pre>
+<p>De verschillende vormen zijn:</p>
+<pre><code class="language-css">/* Alle zijden */
+margin: 20px;
+
+/* Boven/onder en links/rechts */
+margin: 20px 10px;
+
+/* Boven, links/rechts en onder */
+margin: 20px 10px 5px;
+
+/* Boven, rechts, onder en links */
+margin: 20px 10px 5px 15px;
+</code></pre>
+<p>Dezelfde schrijfwijze geldt voor <code>padding</code>.</p>
+<h2 id="een-basisreset">Een basisreset<a class="heading-link" href="#een-basisreset" aria-label="Link naar Een basisreset">#</a></h2>
+<p>Browsers geven verschillende HTML-elementen standaard padding of margin. Met een basisreset verwijder je die standaardruimte en bepaal je zelf de afstanden.</p>
+<pre><code class="language-css">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</code></pre>
+<ul>
+<li><code>*</code> is de universele selector en selecteert alle elementen.</li>
+<li><code>box-sizing: border-box</code> zorgt ervoor dat padding en border worden meegerekend binnen de ingestelde breedte en hoogte.</li>
+</ul>
+<h2 id="position">Position<a class="heading-link" href="#position" aria-label="Link naar Position">#</a></h2>
+<p>De CSS-eigenschap <code>position</code> bepaalt hoe een element op de pagina wordt geplaatst. Sommige waarden laten de gewone volgorde van de pagina intact; andere halen een element uit die volgorde. De vijf behandelde waarden zijn <code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code> en <code>sticky</code>.</p>
+<p>De properties <code>top</code>, <code>right</code>, <code>bottom</code> en <code>left</code> verplaatsen een positioned element vanaf de bijbehorende zijde.</p>
+<pre><code class="language-css">.element {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+</code></pre>
+<h2 id="static">Static<a class="heading-link" href="#static" aria-label="Link naar Static">#</a></h2>
+<p><code>static</code> is de standaardwaarde. De browser plaatst elementen in de normale document flow: block-elementen meestal onder elkaar en inline-elementen binnen dezelfde tekstregel.</p>
+<pre><code class="language-css">.element {
+  position: static;
+}
+</code></pre>
+<p>Offsets zoals <code>top</code> en <code>left</code> hebben geen effect op een static element.</p>
+<h2 id="relative">Relative<a class="heading-link" href="#relative" aria-label="Link naar Relative">#</a></h2>
+<p>Een relatively positioned element blijft onderdeel van de normale document flow. Het element kan worden verschoven ten opzichte van zijn oorspronkelijke positie. De oorspronkelijke ruimte blijft gereserveerd.</p>
+<pre><code class="language-css">.badge {
+  position: relative;
+  top: 8px;
+  left: 12px;
+}
+</code></pre>
+<p><code>position: relative</code> wordt ook vaak op een parent gezet. Een absoluut geplaatst element dat er direct of indirect in staat, kan die parent dan als startpunt gebruiken.</p>
+<h2 id="absolute">Absolute<a class="heading-link" href="#absolute" aria-label="Link naar Absolute">#</a></h2>
+<p>Een absolutely positioned element wordt uit de normale document flow gehaald. Andere elementen houden geen ruimte voor dit element vrij.</p>
+<pre><code class="language-html">&lt;div class=&quot;card&quot;&gt;
+  &lt;span class=&quot;badge&quot;&gt;Nieuw&lt;/span&gt;
+  &lt;h2&gt;Product&lt;/h2&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">.card {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+</code></pre>
+<p>De badge wordt vanaf de randen van <code>.card</code> geplaatst, omdat <code>.card</code> <code>position: relative</code> heeft. Zonder zo&#39;n omliggend element gebruikt de browser meestal de pagina als startpunt.</p>
+<h2 id="fixed">Fixed<a class="heading-link" href="#fixed" aria-label="Link naar Fixed">#</a></h2>
+<p>Een fixed element wordt uit de document flow gehaald en ten opzichte van het browservenster geplaatst. Het blijft op dezelfde plek wanneer de pagina scrolt.</p>
+<pre><code class="language-css">.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+</code></pre>
+<p>Fixed position is geschikt voor een element dat voortdurend zichtbaar moet blijven, maar kan inhoud bedekken als er onvoldoende ruimte wordt vrijgehouden.</p>
+<h2 id="sticky">Sticky<a class="heading-link" href="#sticky" aria-label="Link naar Sticky">#</a></h2>
+<p><code>sticky</code> combineert eigenschappen van <code>relative</code> en <code>fixed</code>. Het element beweegt eerst mee in de normale flow en blijft vanaf een ingestelde grens op zijn plek staan.</p>
+<pre><code class="language-css">.section-title {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+</code></pre>
+<p>Een sticky element werkt binnen de grenzen van zijn scrollende container. Een waarde zoals <code>top: 0</code> is nodig om te bepalen vanaf welk punt het element blijft plakken.</p>
+<h2 id="float">Float<a class="heading-link" href="#float" aria-label="Link naar Float">#</a></h2>
+<p>Met <code>float</code> plaats je een element links of rechts, waarna tekst en inline-inhoud eromheen kunnen lopen.</p>
+<pre><code class="language-html">&lt;img class=&quot;article-image&quot; src=&quot;foto.jpg&quot; alt=&quot;Beschrijving van de foto&quot;&gt;
+&lt;p&gt;Deze tekst loopt naast en daarna onder de afbeelding.&lt;/p&gt;
+</code></pre>
+<pre><code class="language-css">.article-image {
+  float: left;
+  width: 200px;
+  margin: 0 20px 10px 0;
+}
+</code></pre>
+<p>Float werd vroeger veel gebruikt voor complete layouts. Voor moderne pagina-indelingen zijn Flexbox en Grid meestal duidelijker en beter beheersbaar. Float blijft geschikt om tekst rond een afbeelding te laten lopen.</p>
+<h2 id="een-css-dropdownmenu">Een CSS-dropdownmenu<a class="heading-link" href="#een-css-dropdownmenu" aria-label="Link naar Een CSS-dropdownmenu">#</a></h2>
+<p>Een dropdownmenu kan worden gemaakt met een lijst binnen een andere lijst. Het submenu is standaard verborgen. Het verschijnt wanneer de gebruiker met de muis over het menu gaat of met de Tab-toets een link in het menu selecteert.</p>
+<pre><code class="language-html">&lt;nav aria-label=&quot;Hoofdnavigatie&quot;&gt;
+  &lt;ul class=&quot;menu&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;weken.html&quot;&gt;Weken&lt;/a&gt;
+      &lt;ul class=&quot;submenu&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;week-2.html&quot;&gt;Week 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;week-3.html&quot;&gt;Week 3&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+<pre><code class="language-css">.menu,
+.submenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu {
+  display: flex;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 180px;
+  background: white;
+}
+
+.dropdown:hover .submenu,
+.dropdown:focus-within .submenu {
+  display: block;
+}
+</code></pre>
+<p><code>:focus-within</code> zorgt ervoor dat het submenu ook geopend blijft wanneer een link erin toetsenbordfocus heeft.</p>
+<h2 id="z-index">Z-index<a class="heading-link" href="#z-index" aria-label="Link naar Z-index">#</a></h2>
+<p><code>z-index</code> bepaalt welk overlappend element vooraan staat. Een element met een hogere waarde staat meestal vóór een element met een lagere waarde.</p>
+<pre><code class="language-css">.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.decoratie {
+  position: absolute;
+  z-index: 1;
+}
+</code></pre>
+<p><code>z-index</code> werkt bij elementen met een ingestelde <code>position</code> en ook bij flex- en griditems. Soms vormt een omliggend element een eigen stapelgroep. Daardoor kan een hoge waarde toch niet boven elk element op de hele pagina komen.</p>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>Padding is ruimte binnen de border; margin is ruimte buiten de border.</li>
+<li>Bij vier waarden op één regel is de volgorde boven, rechts, onder en links.</li>
+<li><code>position</code> bepaalt of een element op zijn gewone plek in de pagina blijft.</li>
+<li>Een absoluut geplaatst element gebruikt het dichtstbijzijnde omliggende element met een ingestelde <code>position</code> als startpunt.</li>
+<li>Float is vooral geschikt om tekst rond inhoud te laten lopen.</li>
+<li>Een CSS-dropdown gebruikt naast <code>:hover</code> ook <code>:focus-within</code> voor toetsenbordbediening.</li>
+<li><code>z-index</code> bepaalt de stapelvolgorde van overlappende elementen.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="week-4.html">Week 4 - CSS, kleuren en fonts</a></li>
+<li>Volgende: <a href="week-6.html">Week 6 - Flexbox</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

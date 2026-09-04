@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 7 - Responsive webdesign uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 7 - Responsive webdesign | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html" aria-current="page">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 7</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 7</p><h1>Responsive webdesign</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>Responsive webdesign zorgt ervoor dat een website zich aanpast aan verschillende schermformaten. Dezelfde inhoud blijft bruikbaar en leesbaar op telefoons, tablets, laptops en grote beeldschermen. Hiervoor gebruik je flexibele maten, Flexbox en media queries.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik toon aan wat een breakpoint op een website is.</li>
+<li>Ik pas een breakpoint toe in CSS.</li>
+<li>Ik benoem het verschil tussen de media types <code>all</code>, <code>print</code>, <code>screen</code> en <code>speech</code>.</li>
+<li>Ik pas Flexbox toe om een element responsive te maken voor mobiel.</li>
+<li>Ik maak met media types een website responsive.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#responsive-webdesign">Responsive webdesign</a></li>
+<li><a href="#de-bouwstenen">De bouwstenen</a></li>
+<li><a href="#flexibele-pagina-indeling">Flexibele pagina-indeling</a></li>
+<li><a href="#flexbox-in-een-responsive-layout">Flexbox in een responsive layout</a></li>
+<li><a href="#media-queries">Media queries</a></li>
+<li><a href="#media-types">Media types</a></li>
+<li><a href="#breakpoints">Breakpoints</a></li>
+<li><a href="#mobile-first">Mobile first</a></li>
+<li><a href="#responsive-controleren">Responsive controleren</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="responsive-webdesign">Responsive webdesign<a class="heading-link" href="#responsive-webdesign" aria-label="Link naar Responsive webdesign">#</a></h2>
+<p>Responsive webdesign is een methode waarbij de layout en inhoud meeveranderen met de beschikbare schermruimte. Een pagina die alleen voor een breed desktopscherm is ontworpen, kan op een telefoon moeilijk leesbaar en bedienbaar worden.</p>
+<p>Een responsive website voorkomt bijvoorbeeld dat tekst te klein wordt, onderdelen buiten het scherm vallen of gebruikers van links naar rechts moeten scrollen.</p>
+<p>Plaats deze regel in de <code>&lt;head&gt;</code>. Hiermee vertel je de mobiele browser dat de pagina even breed moet zijn als het scherm. De zichtbare ruimte van de browser heet de <strong>viewport</strong>.</p>
+<pre><code class="language-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+</code></pre>
+<h2 id="de-bouwstenen">De bouwstenen<a class="heading-link" href="#de-bouwstenen" aria-label="Link naar De bouwstenen">#</a></h2>
+<p>De les behandelt drie belangrijke bouwstenen:</p>
+<ol>
+<li><strong>Flexibele pagina-indeling</strong> - afmetingen passen mee met de beschikbare ruimte. Dit heet ook een <strong>fluid layout</strong>.</li>
+<li><strong>Flexbox-layouts</strong> - items kunnen flexibel verdelen, krimpen en doorlopen.</li>
+<li><strong>Media queries</strong> - CSS wordt toegepast wanneer aan een voorwaarde wordt voldaan.</li>
+</ol>
+<p>Deze technieken vullen elkaar aan. De basis kan flexibele breedtes en Flexbox gebruiken. Een media query kan de richting of afmetingen veranderen zodra daar meer of minder ruimte voor is.</p>
+<h2 id="flexibele-pagina-indeling">Flexibele pagina-indeling<a class="heading-link" href="#flexibele-pagina-indeling" aria-label="Link naar Flexibele pagina-indeling">#</a></h2>
+<p>Een vaste waarde blijft altijd even groot. Een flexibele waarde past zich aan de beschikbare ruimte van het omliggende element of het scherm aan. Zo&#39;n aanpasbare indeling wordt ook een <strong>fluid layout</strong> genoemd.</p>
+<pre><code class="language-css">/* Vaste breedte */
+.container {
+  width: 600px;
+}
+
+/* Flexibele breedte */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+</code></pre>
+<p>De tweede container gebruikt 90 procent van de beschikbare breedte, maar wordt nooit breder dan 1200 pixels. Daardoor past de container zich aan zonder op grote schermen onbeperkt uit te rekken.</p>
+<p>Afbeeldingen kunnen op dezelfde manier flexibel worden gemaakt:</p>
+<pre><code class="language-css">img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+</code></pre>
+<h2 id="flexbox-in-een-responsive-layout">Flexbox in een responsive layout<a class="heading-link" href="#flexbox-in-een-responsive-layout" aria-label="Link naar Flexbox in een responsive layout">#</a></h2>
+<p>Met Flexbox kunnen items hun breedte aanpassen en naar een volgende regel gaan.</p>
+<pre><code class="language-css">.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1 1 260px;
+}
+</code></pre>
+<p>Iedere card heeft een gewenste basisbreedte van 260 pixels. De cards mogen groeien, krimpen en doorlopen naar een volgende regel. Hierdoor past de layout zich al aan zonder een media query.</p>
+<p>Een media query kan de richting gericht aanpassen:</p>
+<pre><code class="language-css">.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .navigation {
+    flex-direction: row;
+  }
+}
+</code></pre>
+<p>Op een smal scherm staat de navigatie onder elkaar. Vanaf 768 pixels staan de items naast elkaar.</p>
+<h2 id="media-queries">Media queries<a class="heading-link" href="#media-queries" aria-label="Link naar Media queries">#</a></h2>
+<p>Een media query controleert een kenmerk van het medium of scherm en past CSS toe wanneer de voorwaarde klopt.</p>
+<pre><code class="language-css">@media screen and (min-width: 768px) {
+  .page {
+    display: flex;
+    gap: 32px;
+  }
+}
+</code></pre>
+<ul>
+<li><code>@media</code> start de media query.</li>
+<li><code>screen</code> is het media type.</li>
+<li><code>(min-width: 768px)</code> is de voorwaarde.</li>
+<li>De CSS tussen de accolades geldt vanaf een viewportbreedte van 768 pixels.</li>
+</ul>
+<p>Plaats media queries onder de basisregels waarop ze voortbouwen. Daardoor staan de oorspronkelijke en aangepaste styles in een voorspelbare volgorde binnen de cascade.</p>
+<p>Met <code>max-width</code> geldt de CSS tot en met een bepaalde breedte:</p>
+<pre><code class="language-css">@media screen and (max-width: 767px) {
+  .desktop-only {
+    display: none;
+  }
+}
+</code></pre>
+<h2 id="media-types">Media types<a class="heading-link" href="#media-types" aria-label="Link naar Media types">#</a></h2>
+<p>Een media type geeft aan waar de CSS voor bedoeld is, bijvoorbeeld een beeldscherm, printer of voorleessoftware.</p>
+<h3>All</h3>
+<p><code>all</code> geldt voor alle media types en is de standaard wanneer geen type wordt genoemd.</p>
+<pre><code class="language-css">@media all and (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+</code></pre>
+<h3>Screen</h3>
+<p><code>screen</code> is bedoeld voor beeldschermen, zoals desktops, laptops, tablets en telefoons.</p>
+<pre><code class="language-css">@media screen and (min-width: 992px) {
+  .sidebar {
+    display: block;
+  }
+}
+</code></pre>
+<h3>Print</h3>
+<p><code>print</code> past styles toe wanneer een pagina wordt afgedrukt of als printvoorbeeld wordt getoond.</p>
+<pre><code class="language-css">@media print {
+  nav,
+  footer {
+    display: none;
+  }
+
+  body {
+    color: black;
+    background: white;
+  }
+}
+</code></pre>
+<h3>Speech</h3>
+<p><code>speech</code> is bedoeld voor speech synthesizers die inhoud voorlezen. Ondersteuning en praktisch gebruik kunnen per browser en hulpmiddel verschillen.</p>
+<pre><code class="language-css">@media speech {
+  .decorative-label {
+    display: none;
+  }
+}
+</code></pre>
+<h2 id="breakpoints">Breakpoints<a class="heading-link" href="#breakpoints" aria-label="Link naar Breakpoints">#</a></h2>
+<p>Een breakpoint is een schermbreedte waarop de layout een aanpassing nodig heeft. De les noemt deze veelgebruikte voorbeeldwaarden:</p>
+<table>
+<thead>
+<tr>
+<th align="right">Breakpoint</th>
+<th>Voorbeeldapparaat</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">576 px</td>
+<td>verticale telefoons</td>
+</tr>
+<tr>
+<td align="right">768 px</td>
+<td>tablets</td>
+</tr>
+<tr>
+<td align="right">992 px</td>
+<td>laptops</td>
+</tr>
+<tr>
+<td align="right">1200 px</td>
+<td>grotere apparaten</td>
+</tr>
+</tbody></table>
+<p>Deze waarden zijn richtlijnen, geen vaste regels. Kies een breakpoint op het punt waar de inhoud niet meer goed past.</p>
+<pre><code class="language-css">@media screen and (min-width: 576px) {
+  /* Aanpassing voor meer beschikbare ruimte */
+}
+
+@media screen and (min-width: 768px) {
+  /* Tablet-layout */
+}
+
+@media screen and (min-width: 992px) {
+  /* Brede layout */
+}
+</code></pre>
+<h2 id="mobile-first">Mobile first<a class="heading-link" href="#mobile-first" aria-label="Link naar Mobile first">#</a></h2>
+<p>Bij mobile first schrijf je eerst de basis-CSS voor een smal scherm. Daarna voeg je met <code>min-width</code> extra layout toe wanneer meer ruimte beschikbaar is.</p>
+<pre><code class="language-css">.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+  }
+
+  .main-content {
+    flex: 2;
+  }
+
+  .sidebar {
+    flex: 1;
+  }
+}
+</code></pre>
+<p>De HTML blijft gelijk. Alleen de presentatie verandert op basis van de beschikbare breedte.</p>
+<h2 id="responsive-controleren">Responsive controleren<a class="heading-link" href="#responsive-controleren" aria-label="Link naar Responsive controleren">#</a></h2>
+<p>De apparaatweergave in de browsertools toont een pagina op verschillende schermbreedtes. Een breakpoint is nodig wanneer bijvoorbeeld:</p>
+<ul>
+<li>tekstregels oncomfortabel breed of smal worden;</li>
+<li>navigatielinks niet meer naast elkaar passen;</li>
+<li>kaarten te smal worden;</li>
+<li>inhoud buiten het scherm valt;</li>
+<li>onderdelen elkaar overlappen.</li>
+</ul>
+<p>Controleer niet alleen een paar apparaatformaten, maar ook de breedtes ertussen. Een goede responsive layout verandert op basis van de inhoud en niet alleen op basis van apparaatnamen.</p>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>Responsive webdesign houdt een website bruikbaar op verschillende schermformaten.</li>
+<li>Flexibele afmetingen passen mee met de beschikbare ruimte.</li>
+<li>Flexbox kan items verdelen, laten krimpen en laten doorlopen.</li>
+<li>Een media query past CSS toe wanneer een voorwaarde klopt.</li>
+<li><code>all</code>, <code>screen</code>, <code>print</code> en <code>speech</code> zijn verschillende media types.</li>
+<li>Een breakpoint kies je wanneer de inhoud een layoutaanpassing nodig heeft.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="week-6.html">Week 6 - Flexbox</a></li>
+<li>Volgende: <a href="index.html">Terug naar het weekoverzicht</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

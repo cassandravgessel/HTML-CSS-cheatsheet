@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 3 - If/else en state uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 3 - If/else en state | JavaScript Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html" aria-current="page">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 3</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 3</p><h1>If/else en state</h1></div></header><article class="lesson-content container"><section>
+                <h2 id="if-else-keuzes-maken">If/else (keuzes maken)<a class="heading-link" href="#if-else-keuzes-maken" aria-label="Link naar If/else (keuzes maken)">#</a></h2>
+
+                <div class="callout">
+                    <strong>Wat is if/else?</strong><br>
+                    Met if/else kan je code laten beslissen wat er moet gebeuren. Als een voorwaarde waar is, doe je het
+                    ene. Anders doe je iets anders.
+                </div>
+
+                <h3>Basis voorbeeld:</h3>
+                <pre><code class="language-javascript">let leeftijd = 17;
+
+
+                    if (leeftijd &gt;= 18) {
+
+                      console.log(&quot;Je mag
+                        stemmen!&quot;);
+
+                    } else {
+
+                      console.log(&quot;Je mag nog niet
+                        stemmen&quot;);
+
+                    }</code></pre>
+
+                <div class="callout">
+                    <strong>Wat gebeurt er?</strong>
+                    <ol>
+                        <li>Check: Is leeftijd groter of gelijk aan 18?</li>
+                        <li>Ja? → Voer code tussen eerste { } uit</li>
+                        <li>Nee? → Voer code tussen else { } uit</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section>
+                <h2 id="vergelijk-operators">Vergelijk operators<a class="heading-link" href="#vergelijk-operators" aria-label="Link naar Vergelijk operators">#</a></h2>
+
+                <div class="callout">
+                    <strong>Operators die je kunt gebruiken:</strong>
+                    <ul>
+                        <li><code>===</code> → is precies gelijk aan</li>
+                        <li><code>!==</code> → is niet gelijk aan</li>
+                        <li><code>&gt;</code> → groter dan</li>
+                        <li><code>&lt;</code> → kleiner dan</li>
+                        <li><code>&gt;=</code> → groter dan of gelijk aan</li>
+                        <li><code>&lt;=</code> → kleiner dan of gelijk aan</li>
+                    </ul>
+                </div>
+
+                <h3>Voorbeelden:</h3>
+                <pre><code class="language-javascript">// Boolean controleren
+
+                    let aanwezigheid = true;
+
+
+                    if (aanwezigheid === true) {
+
+                      console.log(&quot;Fijn dat je er
+                        bent!&quot;);
+
+                    } else {
+
+                      console.log(&quot;We missen je op
+                        school&quot;);
+
+                    }
+
+
+                    // Stemgerechtigd ja/nee
+
+                    let leeftijd = 20;
+
+
+                    if (leeftijd &gt;= 18) {
+
+                      alert(&quot;Je mag stemmen!&quot;);
+
+                    } else {
+
+                      alert(&quot;Je bent nog te jong om te
+                        stemmen&quot;);
+
+                    }</code></pre>
+
+                <div class="callout">
+                    <strong>Let op:</strong> Gebruik <code>===</code> (3 is-tekens) in plaats van <code>==</code> (2
+                    is-tekens). Dit voorkomt fouten.
+
+                    <h4>Waarom?</h4>
+                    <ul>
+                        <li><code>==</code> controleert alleen de waarde</li>
+                        <li><code>===</code> controleert waarde EN datatype</li>
+                    </ul>
+
+                    <strong>Voorbeeld:</strong>
+                    <pre><code class="language-javascript">&quot;3&quot; == 3 // true
+                            (JavaScript maakt automatisch van &quot;3&quot; het getal 3)
+
+                        &quot;3&quot; === 3 // false
+                            (string is niet hetzelfde als number)</code></pre>
+
+                    <strong>Conclusie:</strong> Gebruik altijd <code>===</code> omdat het betrouwbaarder is en bugs
+                    voorkomt.
+                </div>
+            </section>
+
+            <section>
+                <h2 id="state-geheugen-in-je-app">State (geheugen in je app)<a class="heading-link" href="#state-geheugen-in-je-app" aria-label="Link naar State (geheugen in je app)">#</a></h2>
+
+                <div class="callout">
+                    <strong>Wat is state?</strong><br>
+                    State is een variabele die onthoudt wat er gebeurt in je app. Bijvoorbeeld: hoevaak heb je de knop
+                    al geklikt? Die waarde moet ergens worden opgeslagen.
+                </div>
+
+                <h3>Simpele teller:</h3>
+                <pre><code class="language-javascript">// State: onthoud hoeveel keer er geklikt is
+
+                    let teller = 0;
+
+
+                    function klik() {
+
+                      teller = teller + 1; // of:
+                        teller++;
+
+                      console.log(teller);
+
+                    }</code></pre>
+
+                <div class="callout">
+                    💡 <strong>Tip:</strong> <code>teller++</code> is hetzelfde als <code>teller = teller + 1</code>
+                </div>
+            </section>
+
+
+            <section>
+                <h2 id="dom-aanpassen-met-variabele-waarde">DOM aanpassen met variabele waarde<a class="heading-link" href="#dom-aanpassen-met-variabele-waarde" aria-label="Link naar DOM aanpassen met variabele waarde">#</a></h2>
+
+                <div class="callout">
+                    Je kunt de waarde van een variabele direct in de HTML zetten:
+                </div>
+
+                <pre><code class="language-javascript">let score = 42;
+
+                    let naam = &quot;Lisa&quot;;
+
+
+                    // Zet de waarde in HTML
+
+                    document.getElementById(&quot;score&quot;).innerHTML = score;
+
+                    document.getElementById(&quot;naam&quot;).innerHTML = naam;
+
+
+                    // Of gecombineerd:
+
+                    document.getElementById(&quot;resultaat&quot;).innerHTML = naam + &quot; heeft &quot; + score + &quot; punten!&quot;;</code></pre>
+            </section>
+
+            <section>
+                <h2 id="veelgemaakte-fouten">Veelgemaakte fouten<a class="heading-link" href="#veelgemaakte-fouten" aria-label="Link naar Veelgemaakte fouten">#</a></h2>
+
+                <div class="callout callout--warning">
+                    <code>if (leeftijd = 18)</code> → <code>if (leeftijd === 18)</code> (gebruik === voor
+                    vergelijken!)<br>
+                    Vergeten om state variabele buiten functie te zetten → werkt niet!<br>
+                    <code>if (leeftijd >= 18)</code> zonder { } → gebruik altijd haakjes!<br>
+                    Vergeten om innerHTML bij te werken → gebruiker ziet niks
+                </div>
+            </section></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

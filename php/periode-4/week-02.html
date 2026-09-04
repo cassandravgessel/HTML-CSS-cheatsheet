@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 4 · Week 2 - UPDATE queries uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 4 · Week 2 - UPDATE queries | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-4/week-01.html">Week 1</a></li><li><a href="../periode-4/week-02.html" aria-current="page">Week 2</a></li><li><a href="../periode-4/week-03.html">Week 3</a></li><li><a href="../periode-4/week-04.html">Week 4</a></li><li><a href="../periode-4/week-05.html">Week 5</a></li><li><a href="../periode-4/week-06.html">Week 6</a></li><li><a href="../periode-4/week-07.html">Week 7</a></li><li><a href="../periode-4/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 4 · Week 2</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 4 · Week 2</p><h1>UPDATE queries</h1></div></header><article class="lesson-content container"><h2 id="wat-leer-je-deze-week">Wat leer je deze week?<a class="heading-link" href="#wat-leer-je-deze-week" aria-label="Link naar Wat leer je deze week?">#</a></h2>
+<p>Vorige week kon je al één specifiek item ophalen uit de database.</p>
+<p>Deze week maak je jouw editpagina echt werkend: je gaat bestaande data aanpassen met een UPDATE query.</p>
+<p>Je leert hoe formulierdata terug naar de database gaat en waarom een <code>WHERE</code> in een UPDATE query super belangrijk is.</p>
+<h2 id="kernconcepten">Kernconcepten
+  
+<a class="heading-link" href="#kernconcepten" aria-label="Link naar Kernconcepten">#</a></h2>
+<p>Een UPDATE query werkt eigenlijk als “overschrijven”.</p>
+<p>Stel: je hebt een huiswerkapp.</p>
+<p>Een gebruiker verandert een opdracht van:</p>
+<pre data-lang="text"><code class="language-text">Engels leren</code></pre>
+<p>naar:</p>
+<pre data-lang="text"><code class="language-text">Engels presentatie voorbereiden</code></pre>
+<p>Dan wil je niet een nieuw item maken.</p>
+<p>Je wil het bestaande item aanpassen.</p>
+<p>Daarom gebeurt de flow ongeveer zo:</p>
+<pre data-lang="text"><code class="language-text">gebruiker opent editpagina
+↓
+formulier wordt ingevuld met bestaande data
+↓
+gebruiker past iets aan
+↓
+formulier wordt verstuurd met POST
+↓
+PHP ontvangt de nieuwe data
+↓
+UPDATE query draait
+↓
+database slaat wijziging op
+↓
+redirect terug naar overzicht</code></pre>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen?<a class="heading-link" href="#wat-moet-je-kennen" aria-label="Link naar Wat moet je kennen?">#</a></h2>
+<h3>1. Formulierdata ontvangen met POST</h3>
+<blockquote><p><strong>Uitleg</strong><br>De gebruiker past data aan in een formulier.<br>Daarna wordt die nieuwe data verstuurd via POST.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$_POST</code></li>
+<li><code>method="POST"</code></li>
+<li>veilig uitlezen met <code>?? ''</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<blockquote><p><strong>Onthoud:</strong> POST gebruik je voor data die iets verandert in je applicatie.</p></blockquote>
+<h3>2. Hidden inputs gebruiken</h3>
+<blockquote><p><strong>Uitleg</strong><br>De gebruiker hoeft het <code>id</code> niet te zien, maar PHP heeft het wel nodig om te weten welk item aangepast moet worden.</p></blockquote>
+<p>Daarom gebruik je een hidden input.</p>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>type="hidden"</code></li>
+<li>id meesturen in een formulier</li>
+<li>data uit een associative array gebruiken</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="hidden" 
+    name="id" 
+    value="&lt;?= $item['id'] ?&gt;"
+&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Hidden betekent alleen onzichtbaar in de pagina. De waarde wordt nog steeds meegestuurd.</p></blockquote>
+<h3>3. Een UPDATE query schrijven</h3>
+<blockquote><p><strong>Uitleg</strong><br>Met UPDATE pas je bestaande data aan in de database.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>UPDATE</code></li>
+<li><code>SET</code></li>
+<li><code>WHERE</code></li>
+<li>prepared statements</li>
+<li>placeholders <code>?</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    UPDATE items 
+    SET title = ? 
+    WHERE id = ?
+");
+
+$stmt-&gt;execute([$title, $id]);</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>SET</code> bepaalt wat aangepast wordt. <code>WHERE</code> bepaalt WELKE rij aangepast wordt.</p></blockquote>
+<h3>4. Waarom WHERE zo belangrijk is</h3>
+<blockquote><p><strong>Uitleg</strong><br>Zonder <code>WHERE</code> weet de database niet welke rij aangepast moet worden.</p></blockquote>
+<p>Dat betekent dat ALLE rijen aangepast kunnen worden.</p>
+<p>Ja. Echt allemaal 😭</p>
+<h3>Voorbeeld</h3>
+<p>❌ Zonder WHERE</p>
+<pre data-lang="sql"><code class="language-sql">UPDATE items
+SET title = 'Kaasbroodje'</code></pre>
+<p>Resultaat:</p>
+<pre data-lang="text"><code class="language-text">ALLE titels worden:
+Kaasbroodje</code></pre>
+<p>✅ Met WHERE</p>
+<pre data-lang="sql"><code class="language-sql">UPDATE items
+SET title = 'Kaasbroodje'
+WHERE id = 3</code></pre>
+<p>Resultaat:</p>
+<pre data-lang="text"><code class="language-text">Alleen item 3 verandert.</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Een UPDATE zonder WHERE is gevaarlijk.</p></blockquote>
+<h3>5. Redirect gebruiken na UPDATE</h3>
+<blockquote><p><strong>Uitleg</strong><br>Na een succesvolle update stuur je de gebruiker meestal terug naar het overzicht.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>header()</code></li>
+<li><code>exit</code></li>
+<li>redirect flow</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Zonder redirect kan een refresh dezelfde update opnieuw uitvoeren.</p></blockquote>
+<h2 id="veelgemaakte-fouten-met-voorbeelden">Veelgemaakte fouten (met voorbeelden)<a class="heading-link" href="#veelgemaakte-fouten-met-voorbeelden" aria-label="Link naar Veelgemaakte fouten (met voorbeelden)">#</a></h2>
+<h3>1. WHERE vergeten in de UPDATE query</h3>
+<p>Dit is waarschijnlijk de gevaarlijkste fout van deze week.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="sql"><code class="language-sql">UPDATE items
+SET title = ?</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="sql"><code class="language-sql">UPDATE items
+SET title = ?
+WHERE id = ?</code></pre>
+<h3>2. Het id niet meesturen in het formulier</h3>
+<p>Dan weet PHP niet welk item aangepast moet worden.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;input type="text" name="title"&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="hidden" 
+    name="id" 
+    value="&lt;?= $item['id'] ?&gt;"
+&gt;</code></pre>
+<h3>3. POST gebruiken zonder fallback</h3>
+<p>Als een veld ontbreekt, krijg je warnings.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<h3>4. De placeholders in verkeerde volgorde zetten</h3>
+<p>De volgorde van de array moet overeenkomen met de query.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$stmt-&gt;execute([$id, $title]);</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$stmt-&gt;execute([$title, $id]);</code></pre>
+<h3>5. Geen redirect gebruiken na UPDATE</h3>
+<p>Dan kan een refresh dezelfde query opnieuw uitvoeren.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">echo "Opgeslagen!";</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<h2 id="snippets">Snippets<a class="heading-link" href="#snippets" aria-label="Link naar Snippets">#</a></h2>
+<h3>POST-data uitlezen</h3>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<h3>Hidden input maken</h3>
+<pre data-lang="php"><code class="language-php">&lt;input 
+    type="hidden" 
+    name="id" 
+    value="&lt;?= $item['id'] ?&gt;"
+&gt;</code></pre>
+<h3>UPDATE query uitvoeren</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    UPDATE items
+    SET title = ?
+    WHERE id = ?
+");
+
+$stmt-&gt;execute([$title, $id]);</code></pre>
+<h3>Redirect gebruiken</h3>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<h3>Controleren of formulier verstuurd is</h3>
+<pre data-lang="php"><code class="language-php">if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+}</code></pre></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

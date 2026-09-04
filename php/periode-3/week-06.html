@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Periode 3 · Week 6 - INSERT &amp; Redirect (PRG) uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Periode 3 · Week 6 - INSERT &amp; Redirect (PRG) | PHP Cheatsheet</title>
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<script src="../../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-3/week-01.html">Week 1</a></li><li><a href="../periode-3/week-02.html">Week 2</a></li><li><a href="../periode-3/week-03.html">Week 3</a></li><li><a href="../periode-3/week-04.html">Week 4</a></li><li><a href="../periode-3/week-05.html">Week 5</a></li><li><a href="../periode-3/week-06.html" aria-current="page">Week 6</a></li><li><a href="../periode-3/week-07.html">Week 7</a></li><li><a href="../periode-3/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 3 · Week 6</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 3 · Week 6</p><h1>INSERT &amp; Redirect (PRG)</h1></div></header><article class="lesson-content container"><h2 id="wat-moet-je-kennen-samenvatting">Wat moet je kennen (samenvatting)<a class="heading-link" href="#wat-moet-je-kennen-samenvatting" aria-label="Link naar Wat moet je kennen (samenvatting)">#</a></h2>
+<ul>
+<li><code>prepare()</code> gebruiken</li>
+<li><code>execute()</code> uitvoeren</li>
+<li>Named placeholders (<code>:title</code>)</li>
+<li>Waarom prepared statements veilig zijn</li>
+<li>Redirect na POST</li>
+<li><code>header("Location: ...")</code></li>
+<li><code>exit;</code> na header</li>
+</ul>
+<h2 id="1-prepared-statements-veilig-insert">1. Prepared statements (veilig INSERT)<a class="heading-link" href="#1-prepared-statements-veilig-insert" aria-label="Link naar 1. Prepared statements (veilig INSERT)">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Je plaatst nooit variabelen direct in je SQL-string.<br>Met prepared statements scheid je SQL en data. Dat voorkomt SQL-injectie.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$pdo-&gt;prepare()</code></li>
+<li><code>$stmt-&gt;execute()</code></li>
+<li><code>:placeholder</code></li>
+<li>Associatieve array meegeven aan execute</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$title = trim($_POST['title'] ?? '');
+
+$stmt = $pdo-&gt;prepare("INSERT INTO items (title) VALUES (:title)");
+$stmt-&gt;execute([
+    'title' =&gt; $title
+]);</code></pre>
+<blockquote><p><strong>Onthoud:</strong> SQL en data blijven gescheiden.</p></blockquote>
+<h2 id="2-waarom-geen-variabelen-direct-in-sql">2. Waarom geen variabelen direct in SQL?<a class="heading-link" href="#2-waarom-geen-variabelen-direct-in-sql" aria-label="Link naar 2. Waarom geen variabelen direct in SQL?">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Als je variabelen direct in je query zet, kan een gebruiker je query manipuleren.</p></blockquote>
+<h3>Fout voorbeeld</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$pdo-&gt;query("INSERT INTO items (title) VALUES ('$title')");</code></pre>
+<h3>Goed voorbeeld</h3>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("INSERT INTO items (title) VALUES (:title)");
+$stmt-&gt;execute(['title' =&gt; $title]);</code></pre>
+<h2 id="3-redirect-na-post-prg-pattern">3. Redirect na POST (PRG pattern)<a class="heading-link" href="#3-redirect-na-post-prg-pattern" aria-label="Link naar 3. Redirect na POST (PRG pattern)">#</a></h2>
+<blockquote><p><strong>Uitleg</strong><br>Na een POST-request redirect je naar een andere pagina.<br>Zo voorkom je dat een refresh opnieuw een INSERT uitvoert.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>header("Location: index.php")</code></li>
+<li><code>exit;</code></li>
+<li>POST → Redirect → GET</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");
+exit;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> POST → INSERT → redirect → klaar.</p></blockquote>
+<h2 id="veelgemaakte-fouten-kort">Veelgemaakte fouten (kort)<a class="heading-link" href="#veelgemaakte-fouten-kort" aria-label="Link naar Veelgemaakte fouten (kort)">#</a></h2>
+<h3>1. Geen prepared statement gebruiken</h3>
+<p>❌ Variabele direct in SQL-string zetten</p>
+<p>✅ Gebruik altijd <code>prepare()</code> en <code>execute()</code></p>
+<h3>2. Geen redirect gebruiken</h3>
+<p>❌ Refresh = dubbele insert</p>
+<p>✅ Altijd redirect na succesvolle INSERT</p>
+<h3>3. exit vergeten na header()</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");
+exit;</code></pre></article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>

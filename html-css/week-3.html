@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Week 3 - Pagina-indeling, formulieren en tabellen uit de HTML &amp;amp; CSS cheatsheet."><meta name="theme-color" content="#e8f2eb">
+<title>Week 3 - Pagina-indeling, formulieren en tabellen | HTML &amp;amp; CSS Cheatsheet</title>
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<script src="../assets/js/search-index.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
+<script src="../assets/js/main.js" defer></script></head>
+<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>HTML &amp; CSS</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html" aria-current="page">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 3</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 3</p><h1>Pagina-indeling, formulieren en tabellen</h1></div></header><article class="lesson-content container"><h2 id="introductie">Introductie<a class="heading-link" href="#introductie" aria-label="Link naar Introductie">#</a></h2>
+<p>Je kunt een webpagina verdelen in duidelijke onderdelen, zoals een header, navigatie, hoofdinhoud en footer. De HTML-tag vertelt wat de functie van ieder onderdeel is. Je leert ook hoe HTML-elementen binnen andere elementen kunnen staan, hoe een formulier gegevens verzamelt en hoe een tabel gegevens in rijen en kolommen toont.</p>
+<h2 id="lesdoelen">Lesdoelen<a class="heading-link" href="#lesdoelen" aria-label="Link naar Lesdoelen">#</a></h2>
+<ul>
+<li>Ik gebruik minimaal zeven HTML-tags in mijn website.</li>
+<li>Ik leg uit wanneer je een <code>&lt;div&gt;</code> gebruikt.</li>
+<li>Ik maak een formulier met verschillende inputtypes.</li>
+<li>Ik maak een tabel met HTML5.</li>
+<li>Ik leg de begrippen <code>parent</code> en <code>child</code> uit.</li>
+<li>Ik benoem welk element een parent en/of child is.</li>
+</ul>
+<h2 id="inhoudsopgave">Inhoudsopgave<a class="heading-link" href="#inhoudsopgave" aria-label="Link naar Inhoudsopgave">#</a></h2>
+<ul>
+<li><a href="#een-pagina-opdelen-met-html">Een pagina opdelen met HTML</a></li>
+<li><a href="#head-en-header">Head en header</a></li>
+<li><a href="#navigatie-en-hoofdinhoud">Navigatie en hoofdinhoud</a></li>
+<li><a href="#section-article-en-aside">Section, article en aside</a></li>
+<li><a href="#footer">Footer</a></li>
+<li><a href="#div">Div</a></li>
+<li><a href="#parent-child-en-sibling">Parent, child en sibling</a></li>
+<li><a href="#formulieren">Formulieren</a></li>
+<li><a href="#inputtypes">Inputtypes</a></li>
+<li><a href="#tabellen">Tabellen</a></li>
+<li><a href="#tabelgroepen">Tabelgroepen</a></li>
+<li><a href="#kort-onthouden">Kort onthouden</a></li>
+</ul>
+<h2 id="een-pagina-opdelen-met-html">Een pagina opdelen met HTML<a class="heading-link" href="#een-pagina-opdelen-met-html" aria-label="Link naar Een pagina opdelen met HTML">#</a></h2>
+<p>HTML-tags zoals <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code> en <code>&lt;footer&gt;</code> vertellen welke functie een onderdeel van de pagina heeft. Dit wordt ook <strong>semantische HTML</strong> genoemd. <code>Semantisch</code> betekent hier: de naam van de tag maakt duidelijk wat voor soort inhoud erin staat.</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section&gt;...&lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Door duidelijke tags te gebruiken, zie je sneller hoe de pagina is opgebouwd. Ook browsers en hulpmiddelen zoals schermlezers begrijpen de pagina daardoor beter.</p>
+<h2 id="head-en-header">Head en header<a class="heading-link" href="#head-en-header" aria-label="Link naar Head en header">#</a></h2>
+<p><code>&lt;head&gt;</code> en <code>&lt;header&gt;</code> lijken qua naam op elkaar, maar hebben verschillende functies.</p>
+<ul>
+<li><code>&lt;head&gt;</code> bevat algemene informatie over het document, zoals de paginatitel en links naar stylesheets. Dit onderdeel staat buiten de zichtbare pagina-inhoud.</li>
+<li><code>&lt;header&gt;</code> staat in de <code>&lt;body&gt;</code> en introduceert een pagina of sectie. Een header kan bijvoorbeeld een kop, logo of korte introductie bevatten.</li>
+</ul>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;title&gt;Mijn website&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Mijn website&lt;/h1&gt;
+  &lt;/header&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Een document kan meerdere <code>&lt;header&gt;</code>-elementen hebben, bijvoorbeeld één voor de pagina en één binnen een artikel.</p>
+<h2 id="navigatie-en-hoofdinhoud">Navigatie en hoofdinhoud<a class="heading-link" href="#navigatie-en-hoofdinhoud" aria-label="Link naar Navigatie en hoofdinhoud">#</a></h2>
+<p><code>&lt;nav&gt;</code> bevat een groep belangrijke navigatielinks. Een navigatie bestaat vaak uit een lijst.</p>
+<pre><code class="language-html">&lt;nav aria-label=&quot;Hoofdnavigatie&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;contact.html&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+<p><code>&lt;main&gt;</code> bevat de unieke hoofdinhoud van de pagina. Gebruik één zichtbaar <code>&lt;main&gt;</code>-element per document. Herhaalde onderdelen zoals de hoofdnavigatie en de algemene footer staan buiten <code>&lt;main&gt;</code>.</p>
+<h2 id="section-article-en-aside">Section, article en aside<a class="heading-link" href="#section-article-en-aside" aria-label="Link naar Section, article en aside">#</a></h2>
+<p><code>&lt;section&gt;</code> groepeert een thematisch gedeelte van een document. Geef een section meestal een eigen kop.</p>
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Laatste nieuws&lt;/h2&gt;
+  &lt;p&gt;De nieuwste berichten staan hier.&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<p><code>&lt;article&gt;</code> bevat zelfstandige inhoud die op zichzelf gelezen kan worden, zoals een blogpost, forumbericht of nieuwsartikel.</p>
+<pre><code class="language-html">&lt;article&gt;
+  &lt;h2&gt;Een nieuw bericht&lt;/h2&gt;
+  &lt;p&gt;De volledige tekst van het bericht.&lt;/p&gt;
+&lt;/article&gt;
+</code></pre>
+<p><code>&lt;aside&gt;</code> bevat aanvullende informatie die zijdelings bij de hoofdinhoud hoort, zoals een korte toelichting of gerelateerd blok.</p>
+<pre><code class="language-html">&lt;aside&gt;
+  &lt;h2&gt;Extra informatie&lt;/h2&gt;
+  &lt;p&gt;Deze uitleg vult het hoofdonderwerp aan.&lt;/p&gt;
+&lt;/aside&gt;
+</code></pre>
+<p>Een <code>&lt;article&gt;</code> kan sections bevatten en een <code>&lt;section&gt;</code> kan meerdere articles bevatten. Kies het element op basis van de betekenis van de inhoud.</p>
+<h2 id="footer">Footer<a class="heading-link" href="#footer" aria-label="Link naar Footer">#</a></h2>
+<p><code>&lt;footer&gt;</code> markeert het einde van een pagina of sectie. Een footer bevat vaak copyrightinformatie, contactinformatie, gerelateerde links of een link terug naar boven.</p>
+<pre><code class="language-html">&lt;footer&gt;
+  &lt;p&gt;&amp;copy; Casscodes&lt;/p&gt;
+  &lt;address&gt;contact@voorbeeld.nl&lt;/address&gt;
+&lt;/footer&gt;
+</code></pre>
+<p>De algemene paginafooter staat buiten <code>&lt;main&gt;</code>. Een sectie of artikel kan daarnaast een eigen footer hebben.</p>
+<h2 id="div">Div<a class="heading-link" href="#div" aria-label="Link naar Div">#</a></h2>
+<p><code>&lt;div&gt;</code> is een algemeen vak zonder vaste betekenis. Je gebruikt een div om meerdere elementen bij elkaar te zetten voor CSS of JavaScript. Gebruik eerst een duidelijke tag zoals <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code> of <code>&lt;footer&gt;</code> als die past bij de inhoud.</p>
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Team&lt;/h2&gt;
+  &lt;div class=&quot;card-grid&quot;&gt;
+    &lt;article class=&quot;card&quot;&gt;...&lt;/article&gt;
+    &lt;article class=&quot;card&quot;&gt;...&lt;/article&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+<p>Tags zoals <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code> en <code>&lt;footer&gt;</code> maken direct duidelijk wat er in het onderdeel staat. Gebruik daarom zo&#39;n duidelijke tag wanneer die bij de inhoud past.</p>
+<h2 id="parent-child-en-sibling">Parent, child en sibling<a class="heading-link" href="#parent-child-en-sibling" aria-label="Link naar Parent, child en sibling">#</a></h2>
+<p>HTML-elementen kunnen binnen andere HTML-elementen staan. Dit heet ook wel <strong>nesten</strong>. Zie het als dozen: een grote doos kan één of meer kleinere dozen bevatten. De buitenste tag en de tags die erin staan, hebben daardoor een relatie met elkaar.</p>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1&gt;Welkom&lt;/h1&gt;
+  &lt;p&gt;Dit is mijn website.&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+<ul>
+<li><code>&lt;body&gt;</code> is de <strong>parent</strong> (ouder) van <code>&lt;h1&gt;</code> en <code>&lt;p&gt;</code>, omdat deze tags direct binnen <code>&lt;body&gt;</code> staan.</li>
+<li><code>&lt;h1&gt;</code> en <code>&lt;p&gt;</code> zijn <strong>children</strong> (kinderen) van <code>&lt;body&gt;</code>.</li>
+<li><code>&lt;h1&gt;</code> en <code>&lt;p&gt;</code> zijn <strong>siblings</strong> (elementen op hetzelfde niveau), omdat ze dezelfde parent hebben.</li>
+<li><code>&lt;html&gt;</code> is het buitenste element van het document en heeft zelf geen parent.</li>
+</ul>
+<p>Een parent is dus het element dat een ander element direct bevat. Een child is het element dat direct binnen die parent staat.</p>
+<h2 id="formulieren">Formulieren<a class="heading-link" href="#formulieren" aria-label="Link naar Formulieren">#</a></h2>
+<p>Een formulier verzamelt gegevens, bijvoorbeeld voor contact, registratie of inschrijving. Het <code>&lt;form&gt;</code>-element bevat de verschillende formuliervelden.</p>
+<pre><code class="language-html">&lt;form action=&quot;/versturen&quot; method=&quot;post&quot;&gt;
+  &lt;label for=&quot;naam&quot;&gt;Naam&lt;/label&gt;
+  &lt;input type=&quot;text&quot; id=&quot;naam&quot; name=&quot;naam&quot;&gt;
+
+  &lt;label for=&quot;bericht&quot;&gt;Bericht&lt;/label&gt;
+  &lt;textarea id=&quot;bericht&quot; name=&quot;bericht&quot;&gt;&lt;/textarea&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;Versturen&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<ul>
+<li><code>&lt;label&gt;</code> geeft een veld een zichtbaar label. De waarde van <code>for</code> komt overeen met de <code>id</code> van het veld.</li>
+<li><code>&lt;input&gt;</code> maakt een invoerveld.</li>
+<li><code>&lt;textarea&gt;</code> maakt een veld voor meerdere regels tekst.</li>
+<li><code>&lt;button type=&quot;submit&quot;&gt;</code> verstuurt het formulier.</li>
+<li><code>name</code> bepaalt onder welke naam de ingevoerde waarde wordt verstuurd.</li>
+</ul>
+<p>Andere formulierelementen zijn <code>&lt;select&gt;</code>, <code>&lt;option&gt;</code>, <code>&lt;optgroup&gt;</code>, <code>&lt;fieldset&gt;</code>, <code>&lt;legend&gt;</code>, <code>&lt;datalist&gt;</code> en <code>&lt;output&gt;</code>.</p>
+<pre><code class="language-html">&lt;fieldset&gt;
+  &lt;legend&gt;Contactvoorkeur&lt;/legend&gt;
+  &lt;label for=&quot;kanaal&quot;&gt;Kanaal&lt;/label&gt;
+  &lt;select id=&quot;kanaal&quot; name=&quot;kanaal&quot;&gt;
+    &lt;option value=&quot;email&quot;&gt;E-mail&lt;/option&gt;
+    &lt;option value=&quot;telefoon&quot;&gt;Telefoon&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/fieldset&gt;
+</code></pre>
+<h2 id="inputtypes">Inputtypes<a class="heading-link" href="#inputtypes" aria-label="Link naar Inputtypes">#</a></h2>
+<p>Het attribuut <code>type</code> bepaalt welk soort invoer een <code>&lt;input&gt;</code> accepteert. De browser kan hierdoor een passend invoerveld tonen.</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; name=&quot;naam&quot;&gt;
+&lt;input type=&quot;email&quot; name=&quot;email&quot;&gt;
+&lt;input type=&quot;password&quot; name=&quot;wachtwoord&quot;&gt;
+&lt;input type=&quot;number&quot; name=&quot;aantal&quot;&gt;
+&lt;input type=&quot;date&quot; name=&quot;datum&quot;&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;nieuwsbrief&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;keuze&quot; value=&quot;a&quot;&gt;
+&lt;input type=&quot;file&quot; name=&quot;bestand&quot;&gt;
+&lt;input type=&quot;submit&quot; value=&quot;Versturen&quot;&gt;
+</code></pre>
+<p>Veelgebruikte types zijn <code>text</code>, <code>email</code>, <code>password</code>, <code>number</code>, <code>date</code>, <code>checkbox</code>, <code>radio</code>, <code>file</code> en <code>submit</code>. Gebruik altijd een bijbehorend <code>&lt;label&gt;</code> voor velden die de gebruiker moet begrijpen of bedienen.</p>
+<h2 id="tabellen">Tabellen<a class="heading-link" href="#tabellen" aria-label="Link naar Tabellen">#</a></h2>
+<p>Een HTML-tabel ordent gegevens in rijen en kolommen. Gebruik tabellen voor gegevens, niet voor de layout van een pagina.</p>
+<pre><code class="language-html">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Naam&lt;/th&gt;
+    &lt;th&gt;Punten&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Sam&lt;/td&gt;
+    &lt;td&gt;12&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<ul>
+<li><code>&lt;table&gt;</code> bevat de volledige tabel.</li>
+<li><code>&lt;tr&gt;</code> betekent table row en maakt een rij.</li>
+<li><code>&lt;th&gt;</code> betekent table header en maakt een kopcel.</li>
+<li><code>&lt;td&gt;</code> betekent table data en maakt een gewone datacel.</li>
+</ul>
+<h2 id="tabelgroepen">Tabelgroepen<a class="heading-link" href="#tabelgroepen" aria-label="Link naar Tabelgroepen">#</a></h2>
+<p>Met <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> en <code>&lt;tfoot&gt;</code> groepeer je de verschillende delen van een tabel.</p>
+<pre><code class="language-html">&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Product&lt;/th&gt;
+      &lt;th&gt;Prijs&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Notitieboek&lt;/td&gt;
+      &lt;td&gt;&amp;euro; 12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Totaal&lt;/th&gt;
+      &lt;td&gt;&amp;euro; 12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre>
+<ul>
+<li><code>&lt;thead&gt;</code> groepeert de kolomkoppen.</li>
+<li><code>&lt;tbody&gt;</code> groepeert de belangrijkste gegevens.</li>
+<li><code>&lt;tfoot&gt;</code> groepeert een afsluitende rij, bijvoorbeeld een totaal.</li>
+</ul>
+<h2 id="kort-onthouden">Kort onthouden<a class="heading-link" href="#kort-onthouden" aria-label="Link naar Kort onthouden">#</a></h2>
+<ul>
+<li>Tags zoals <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code> en <code>&lt;footer&gt;</code> beschrijven de functie van een paginaonderdeel.</li>
+<li>Gebruik <code>&lt;div&gt;</code> wanneer er geen duidelijkere HTML-tag bij de inhoud past.</li>
+<li>Elementen die binnen andere elementen staan, kunnen parent, child of sibling van elkaar zijn.</li>
+<li>Een formulier verzamelt gegevens met gelabelde invoervelden.</li>
+<li>Een tabel ordent gegevens met rijen, kopcellen en datacellen.</li>
+</ul>
+<h2 id="paginanavigatie">Paginanavigatie<a class="heading-link" href="#paginanavigatie" aria-label="Link naar Paginanavigatie">#</a></h2>
+<ul>
+<li>Vorige: <a href="week-2.html">Week 2 - Start HTML</a></li>
+<li>Volgende: <a href="week-4.html">Week 4 - CSS, kleuren en fonts</a></li>
+</ul>
+</article></main><footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="../index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="../index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>
