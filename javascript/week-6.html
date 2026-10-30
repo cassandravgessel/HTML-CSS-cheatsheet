@@ -2,14 +2,14 @@
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Week 6 - Timers uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
 <title>Week 6 - Timers | JavaScript Cheatsheet</title>
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20261030-4">
 <script src="../assets/js/search-index.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script></head>
-<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
-<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html" aria-current="page">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
-<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 6</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 6</p><h1>Timers</h1></div></header><article class="lesson-content container"><section>
+<body class="week-page lesson-page--compact" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true"></span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html" aria-current="page">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 6</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 6</p><h1>Timers</h1></div></header><article class="lesson-content container"><nav class="lesson-toc" aria-labelledby="lesson-toc-title"><p id="lesson-toc-title">Op deze pagina</p><ol><li><a href="#setinterval-iets-herhalen">setInterval (iets herhalen)</a></li><li><a href="#clearinterval-stoppen-met-herhalen">clearInterval (stoppen met herhalen)</a></li><li><a href="#tijd-formatteren-mm-ss">Tijd formatteren (mm:ss)</a></li><li><a href="#countdown-timer">Countdown timer</a></li><li><a href="#pomodoro-timer-basis">Pomodoro timer basis</a></li><li><a href="#uitbreiden-naar-25-00-timer">Uitbreiden naar 25:00 timer</a></li><li><a href="#veelgemaakte-fouten">Veelgemaakte fouten</a></li><li><a href="#stappenplan-pomodoro-timer">Stappenplan Pomodoro Timer</a></li></ol></nav><section>
                 <h2 id="setinterval-iets-herhalen">setInterval (iets herhalen)<a class="heading-link" href="#setinterval-iets-herhalen" aria-label="Link naar setInterval (iets herhalen)">#</a></h2>
 
                 <div class="callout">
@@ -19,15 +19,11 @@
 
                 <h3>Basis voorbeeld:</h3>
                 <pre><code class="language-javascript">function zegHallo() {
+console.log(&quot;Hallo!&quot;);
+}
 
-                      console.log(&quot;Hallo!&quot;);
-
-                    }
-
-
-                    // Voer zegHallo uit elke 1000 milliseconden (= 1 seconde)
-
-                    setInterval(zegHallo, 1000);</code></pre>
+// Voer zegHallo uit elke 1000 milliseconden (= 1 seconde)
+setInterval(zegHallo, 1000);</code></pre>
 
                 <div class="callout">
                     <strong>Tijd in milliseconden:</strong>
@@ -43,8 +39,8 @@
 
                 <div class="callout">
                     <ul>
-                        <li><code>functieNaam</code> → welke functie moet worden uitgevoerd</li>
-                        <li><code>tijdInMilliseconden</code> → hoe lang wachten tussen elke uitvoering</li>
+                        <li><code>functieNaam</code> -&gt; welke functie moet worden uitgevoerd</li>
+                        <li><code>tijdInMilliseconden</code> -&gt; hoe lang wachten tussen elke uitvoering</li>
                     </ul>
                 </div>
             </section>
@@ -63,47 +59,27 @@
                     <div>
                         <strong>HTML:</strong>
                         <pre><code class="language-javascript">&lt;p id=&quot;teller&quot;&gt;0&lt;/p&gt;
-
-                            &lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;
-
-                            &lt;button id=&quot;stopKnop&quot;&gt;Stop&lt;/button&gt;</code></pre>
+&lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;
+&lt;button id=&quot;stopKnop&quot;&gt;Stop&lt;/button&gt;</code></pre>
                     </div>
                     <div>
                         <strong>JavaScript:</strong>
                         <pre><code class="language-javascript">let count = 0;
-
-                            let timer; // Hier slaan we de timer
-                                op
-
-
-                            function telOp() {
-
-                              count++;
-
-                              let teller = document.getElementById(&quot;teller&quot;);
-
-                              teller.innerHTML = count;
-
-                            }
-
-
-                            function start() {
-
-                              timer = setInterval(telOp, 1000);
-
-                            }
-
-
-                            function stop() {
-
-                              clearInterval(timer);
-
-                            }
-
-
-                            document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;, start);
-
-                            document.getElementById(&quot;stopKnop&quot;).addEventListener(&quot;click&quot;, stop);</code></pre>
+let timer; // Hier slaan we de timer
+op
+function telOp() {
+count++;
+let teller = document.getElementById(&quot;teller&quot;);
+teller.innerHTML = count;
+}
+function start() {
+timer = setInterval(telOp, 1000);
+}
+function stop() {
+clearInterval(timer);
+}
+document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;, start);
+document.getElementById(&quot;stopKnop&quot;).addEventListener(&quot;click&quot;, stop);</code></pre>
                     </div>
                 </div>
 
@@ -126,21 +102,14 @@
                 <h3>Seconden omzetten naar minuten en seconden:</h3>
                 <pre><code class="language-javascript">let totaalSeconden = 125;
 
+// Bereken minuten (afgerond naar beneden)
+let minuten = Math.floor(totaalSeconden /
+60);
 
-                    // Bereken minuten (afgerond naar beneden)
-
-                    let minuten = Math.floor(totaalSeconden /
-                    60);
-
-
-                    // Bereken resterende seconden
-
-                    let seconden = totaalSeconden % 60;
-
-
-                    console.log(minuten); // 2
-
-                    console.log(seconden); // 5</code></pre>
+// Bereken resterende seconden
+let seconden = totaalSeconden % 60;
+console.log(minuten); // 2
+console.log(seconden); // 5</code></pre>
 
                 <div class="callout">
                     <strong>% operator (modulo):</strong> geeft de rest na deling.<br>
@@ -149,41 +118,23 @@
 
                 <h3>Nul toevoegen voor mooie weergave:</h3>
                 <pre><code class="language-javascript">function formatTijd(totaalSeconden) {
+let minuten = Math.floor(totaalSeconden
+/ 60);
+let seconden = totaalSeconden % 60;
 
-                      let minuten = Math.floor(totaalSeconden
-                    / 60);
-
-                      let seconden = totaalSeconden % 60;
-
-                      
-
-                      // Voeg een 0 toe als het getal kleiner is dan 10
-
-                      if (minuten &lt; 10) {
-
-                            minuten = &quot;0&quot; + minuten;
-
-                          }
-
-                          if (seconden &lt; 10) {
-
-                                seconden = &quot;0&quot; + seconden;
-
-                              }
-
-                              
-
-                              return minuten + &quot;:&quot; +
-                            seconden;
-
-                            }
-
-
-                            console.log(formatTijd(125)); // &quot;02:05&quot;
-
-                            console.log(formatTijd(65)); // &quot;01:05&quot;
-
-                            console.log(formatTijd(5)); // &quot;00:05&quot;</code></pre>
+// Voeg een 0 toe als het getal kleiner is dan 10
+if (minuten &lt; 10) {
+minuten = &quot;0&quot; + minuten;
+}
+if (seconden &lt; 10) {
+seconden = &quot;0&quot; + seconden;
+}
+return minuten + &quot;:&quot; +
+seconden;
+}
+console.log(formatTijd(125)); // &quot;02:05&quot;
+console.log(formatTijd(65)); // &quot;01:05&quot;
+console.log(formatTijd(5)); // &quot;00:05&quot;</code></pre>
             </section>
 
             <section>
@@ -198,46 +149,26 @@
                     <div>
                         <strong>HTML:</strong>
                         <pre><code class="language-javascript">&lt;p id=&quot;countdown&quot;&gt;10&lt;/p&gt;
-
-                            &lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;</code></pre>
+&lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;</code></pre>
                     </div>
                     <div>
                         <strong>JavaScript:</strong>
                         <pre><code class="language-javascript">let tijd = 10;
-
-                            let timer;
-
-
-                            function telAf() {
-
-                              tijd--;
-
-                              let countdown = document.getElementById(&quot;countdown&quot;);
-
-                              countdown.innerHTML = tijd;
-
-                              
-
-                              if (tijd === 0) {
-
-                                clearInterval(timer);
-
-                                alert(&quot;Tijd is
-                                om!&quot;);
-
-                              }
-
-                            }
-
-
-                            function start() {
-
-                              timer = setInterval(telAf, 1000);
-
-                            }
-
-
-                            document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;, start);</code></pre>
+let timer;
+function telAf() {
+tijd--;
+let countdown = document.getElementById(&quot;countdown&quot;);
+countdown.innerHTML = tijd;
+if (tijd === 0) {
+clearInterval(timer);
+alert(&quot;Tijd is
+om!&quot;);
+}
+}
+function start() {
+timer = setInterval(telAf, 1000);
+}
+document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;, start);</code></pre>
                     </div>
                 </div>
 
@@ -266,107 +197,60 @@
                     <div>
                         <strong>HTML:</strong>
                         <pre><code class="language-javascript">&lt;h1&gt;Pomodoro Timer&lt;/h1&gt;
-
-                            &lt;p id=&quot;timer&quot;&gt;00:10&lt;/p&gt;
-
-                            &lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;
-
-                            &lt;button id=&quot;pauseKnop&quot;&gt;Pause&lt;/button&gt;
-
-                            &lt;button id=&quot;resetKnop&quot;&gt;Reset&lt;/button&gt;</code></pre>
+&lt;p id=&quot;timer&quot;&gt;00:10&lt;/p&gt;
+&lt;button id=&quot;startKnop&quot;&gt;Start&lt;/button&gt;
+&lt;button id=&quot;pauseKnop&quot;&gt;Pause&lt;/button&gt;
+&lt;button id=&quot;resetKnop&quot;&gt;Reset&lt;/button&gt;</code></pre>
                     </div>
                     <div>
                         <strong>JavaScript:</strong>
                         <pre><code class="language-javascript">let tijd = 10; // 10
-                                seconden
+seconden
+let timer;
+function formatTijd(seconden)
+{
+let min = Math.floor(seconden
+/
+60);
+let sec = seconden % 60;
+if (min &lt; 10) min =
+&quot;0&quot; + min;
+if (sec &lt; 10) sec =
+&quot;0&quot; + sec;
+return min + &quot;:&quot; + sec;
+}
+function update() {
+let display = document.getElementById(&quot;timer&quot;);
+display.innerHTML = formatTijd(tijd);
+}
+function telAf() {
+tijd--;
+update();
+if (tijd === 0)
+{
+clearInterval(timer);
+alert(&quot;Klaar!&quot;);
+}
+}
+function start() {
+timer = setInterval(telAf, 1000);
+}
+function pause() {
+clearInterval(timer);
+}
+function reset() {
+clearInterval(timer);
+tijd = 10;
+update();
+}
 
-                            let timer;
-
-
-                            function formatTijd(seconden)
-                            {
-
-                              let min = Math.floor(seconden
-                            /
-                            60);
-
-                              let sec = seconden % 60;
-
-                              if (min &lt; 10) min =
-                                &quot;0&quot; + min;
-
-                                  if (sec &lt; 10) sec =
-                                    &quot;0&quot; + sec;
-
-                                      return min + &quot;:&quot; + sec;
-
-                                    }
-
-
-                                    function update() {
-
-                                      let display = document.getElementById(&quot;timer&quot;);
-
-                                      display.innerHTML = formatTijd(tijd);
-
-                                    }
-
-
-                                    function telAf() {
-
-                                      tijd--;
-
-                                      update();
-
-                                      
-
-                                      if (tijd === 0)
-                                    {
-
-                                        clearInterval(timer);
-
-                                        alert(&quot;Klaar!&quot;);
-
-                                      }
-
-                                    }
-
-
-                                    function start() {
-
-                                      timer = setInterval(telAf, 1000);
-
-                                    }
-
-
-                                    function pause() {
-
-                                      clearInterval(timer);
-
-                                    }
-
-
-                                    function reset() {
-
-                                      clearInterval(timer);
-
-                                      tijd = 10;
-
-                                      update();
-
-                                    }
-
-
-                                    // Event listeners
-
-                                    document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;,
-                                    start);
-
-                                    document.getElementById(&quot;pauseKnop&quot;).addEventListener(&quot;click&quot;,
-                                    pause);
-
-                                    document.getElementById(&quot;resetKnop&quot;).addEventListener(&quot;click&quot;,
-                                    reset);</code></pre>
+// Event listeners
+document.getElementById(&quot;startKnop&quot;).addEventListener(&quot;click&quot;,
+start);
+document.getElementById(&quot;pauseKnop&quot;).addEventListener(&quot;click&quot;,
+pause);
+document.getElementById(&quot;resetKnop&quot;).addEventListener(&quot;click&quot;,
+reset);</code></pre>
                     </div>
                 </div>
             </section>
@@ -379,23 +263,15 @@
                 </div>
 
                 <pre><code class="language-javascript">// Verander alleen deze regel:
+let tijd = 1500; // 25 minuten
+= 25 * 60 = 1500 seconden
 
-                    let tijd = 1500; //
-                        25 minuten
-                        = 25 * 60 = 1500 seconden
-
-
-                    // En in de reset functie:
-
-                    function reset() {
-
-                      clearInterval(timer);
-
-                      tijd = 1500; // 25 minuten
-
-                      update();
-
-                    }</code></pre>
+// En in de reset functie:
+function reset() {
+clearInterval(timer);
+tijd = 1500; // 25 minuten
+update();
+}</code></pre>
 
                 <div class="callout">
                     <strong>Omrekenen van minuten naar seconden:</strong><br>
@@ -408,14 +284,14 @@
 
                 <div class="callout callout--warning">
                     <ul>
-                        <li><code>setInterval(functie(), 1000)</code> → <code>setInterval(functie, 1000)</code> (geen
+                        <li><code>setInterval(functie(), 1000)</code> -&gt; <code>setInterval(functie, 1000)</code> (geen
                             haakjes bij
                             functienaam!)
                         </li>
-                        <li>Vergeten de timer op te slaan in een variabele → kun je hem niet stoppen</li>
-                        <li>Timer niet stoppen als tijd 0 is → blijft doorlopen naar negatieve getallen</li>
-                        <li>Tijd in seconden in plaats van milliseconden → gebruik 1000 voor 1 seconde</li>
-                        <li>Vergeten <code>update()</code> aan te roepen bij reset → timer toont oude waarde</li>
+                        <li>Vergeten de timer op te slaan in een variabele -&gt; kun je hem niet stoppen</li>
+                        <li>Timer niet stoppen als tijd 0 is -&gt; blijft doorlopen naar negatieve getallen</li>
+                        <li>Tijd in seconden in plaats van milliseconden -&gt; gebruik 1000 voor 1 seconde</li>
+                        <li>Vergeten <code>update()</code> aan te roepen bij reset -&gt; timer toont oude waarde</li>
                     </ul>
                 </div>
             </section>

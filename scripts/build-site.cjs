@@ -82,6 +82,70 @@ function normalizeLegacyContent(html, language) {
   return addHeadingLinks(output.trim());
 }
 
+function sanitizeSymbols(value) {
+  return value
+    .replaceAll("\u{1F4A1} ", "")
+    .replaceAll("\u{1F525} ", "")
+    .replaceAll("\u{2705}", "Goed:")
+    .replaceAll("\u{274C}", "Fout:")
+    .replaceAll("\u{1F4A1}", "")
+    .replaceAll("\u{1F525}", "")
+    .replaceAll("\u{1F62D}", "")
+    .replaceAll("\u{2315}", "")
+    .replaceAll("©", "(c)")
+    .replaceAll("\u{2192}", "-&gt;")
+    .replaceAll("\u{2190}", "&lt;-")
+    .replaceAll("\u{2193}", "v")
+    .replaceAll("\u{2191}", "^")
+    .replaceAll("> Veelgemaakte fouten", ">Veelgemaakte fouten")
+    .replaceAll("Link naar  Veelgemaakte fouten", "Link naar Veelgemaakte fouten");
+}
+
+function normalizeCodeBlocks(html) {
+  return html.replace(/(<pre[^>]*><code[^>]*>)([\s\S]*?)(<\/code><\/pre>)/gi, (_, open, code, close) => {
+    let lines = code.replace(/\r/g, "").split("\n");
+    while (lines.length && !lines[0].trim()) lines.shift();
+    while (lines.length && !lines.at(-1).trim()) lines.pop();
+
+    const continuationIndents = lines.slice(1)
+      .filter((line) => line.trim())
+      .map((line) => line.match(/^\s*/)[0].length)
+      .filter((indent) => indent > 0);
+    const baseIndent = continuationIndents.length ? Math.min(...continuationIndents) : 0;
+
+    lines = lines.map((line, index) => {
+      if (!line.trim()) return "";
+      if (index === 0) return line.trimStart();
+      const indent = line.match(/^\s*/)[0].length;
+      return line.slice(Math.min(indent, baseIndent));
+    });
+
+    const compact = [];
+    for (const line of lines) {
+      const previous = compact.at(-1) || "";
+      if (line && (/\/\/\s*(?:=)?\s*$/.test(previous.trimEnd()) || (previous.includes("//") && line.trim().startsWith("(")))) {
+        compact[compact.length - 1] = `${previous.trimEnd()} ${line.trim()}`;
+      } else if (!(line === "" && compact.at(-1) === "")) {
+        compact.push(line);
+      }
+    }
+
+    const readable = compact.filter((line, index) => {
+      if (line !== "") return true;
+      const nextLine = compact.slice(index + 1).find((candidate) => candidate !== "") || "";
+      return nextLine.trimStart().startsWith("//") && index > 0;
+    });
+    return `${open}${readable.join("\n").trim()}${close}`;
+  });
+}
+
+function buildLessonToc(html) {
+  const headings = [...html.matchAll(/<h2 id="([^"]+)">([\s\S]*?)<a class="heading-link"/g)]
+    .map((match) => ({ id: match[1], title: plainText(match[2]) }));
+  if (headings.length < 2) return "";
+  return `<nav class="lesson-toc" aria-labelledby="lesson-toc-title"><p id="lesson-toc-title">Op deze pagina</p><ol>${headings.map((heading) => `<li><a href="#${heading.id}">${escapeHtml(heading.title)}</a></li>`).join("")}</ol></nav>`;
+}
+
 function nav(course, current, prefix) {
   const items = course === "html-css"
     ? htmlWeeks.map((w) => [`week-${w}.html`, `Week ${w}`, w])
@@ -95,6 +159,7 @@ function nav(course, current, prefix) {
 
 function template({ title, courseName, course, content, current = null, depth = 1, bodyClass = "" }) {
   const prefix = "../".repeat(depth);
+  const styleVersion = "20261030-4";
   const localPrefix = "../".repeat(Math.max(0, depth - 1));
   const phpPeriod = String(current).startsWith("4-") ? 4 : 3;
   const phpWeekLinks = phpWeeks.map((week) => `<li><a href="${localPrefix}periode-${phpPeriod}/week-${String(week).padStart(2, "0")}.html"${current === `${phpPeriod}-${week}` ? ' aria-current="page"' : ""}>Week ${week}</a></li>`).join("");
@@ -103,33 +168,37 @@ function template({ title, courseName, course, content, current = null, depth = 
     : course === "php"
     ? `<ul><li><a href="${localPrefix}index.html"${current === null ? ' aria-current="page"' : ""}>Overzicht</a></li>${current === null ? `<li><a href="#periode-3">Periode 3</a></li><li><a href="#periode-4">Periode 4</a></li>` : phpWeekLinks}<li class="nav-courses"><a href="${prefix}index.html">Alle cursussen</a></li></ul>`
     : nav(course, current, prefix);
-  return `<!doctype html>
+  const document = `<!doctype html>
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="${escapeHtml(title)} uit de ${escapeHtml(courseName)} cheatsheet."><meta name="theme-color" content="#e8f2eb">
 <title>${escapeHtml(title)} | ${escapeHtml(courseName)} Cheatsheet</title>
-<link rel="stylesheet" href="${prefix}assets/css/styles.css?v=20260904-5">
+<link rel="stylesheet" href="${prefix}assets/css/styles.css?v=${styleVersion}">
 <script src="${prefix}assets/js/search-index.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
 <script src="${prefix}assets/js/main.js" defer></script></head>
 <body class="${bodyClass}" data-root="${prefix}"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
-<header class="site-header"><div class="brand-row container"><a class="brand" href="${prefix}index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>${courseName}</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container">${navHtml}</div></nav></header>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="${prefix}index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>${courseName}</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true"></span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container">${navHtml}</div></nav></header>
 ${content}<footer class="site-footer"><div class="site-footer__inner container"><div><a class="footer-brand" href="${prefix}index.html">casscodes*</a><p>Code helder uitgelegd.</p></div><nav><a href="${prefix}index.html">Alle cursussen</a> <span aria-hidden="true">·</span> <a href="https://casscodes.com">casscodes.com</a></nav></div></footer></body></html>`;
+  return sanitizeSymbols(document);
 }
 
 function detailsCard({ number, title, description, topics, href, color }) {
-  return `<details class="week-card card card--${color}"><summary><span class="week-card__number">${String(number).padStart(2, "0")}</span><span class="week-card__summary"><span class="eyebrow">Week ${number}</span><strong>${escapeHtml(title)}</strong><span class="week-card__topics">${topics.map(escapeHtml).join(" · ")}</span></span><span class="week-card__toggle" aria-hidden="true"></span></summary><div class="week-card__details"><p>${escapeHtml(description)}</p><ul class="tag-list">${topics.map((t) => `<li class="tag">${escapeHtml(t)}</li>`).join("")}</ul><a class="card-link" href="${href}">Bekijk week ${number} <span aria-hidden="true">→</span></a></div></details>`;
+  return `<details class="week-card card card--${color}"><summary><span class="week-card__number">${String(number).padStart(2, "0")}</span><span class="week-card__summary"><span class="eyebrow">Week ${number}</span><strong>${escapeHtml(title)}</strong><span class="week-card__topics">${topics.map(escapeHtml).join(" · ")}</span></span><span class="week-card__toggle" aria-hidden="true"></span></summary><div class="week-card__details"><p>${escapeHtml(description)}</p><ul class="tag-list">${topics.map((t) => `<li class="tag">${escapeHtml(t)}</li>`).join("")}</ul><a class="card-link" href="${href}">Bekijk week ${number} <span aria-hidden="true">-&gt;</span></a></div></details>`;
 }
 
 function courseHome({ course, courseName, eyebrow, intro, cards, startHref, art }) {
-  const content = `<main id="main-content"><section class="home-hero"><div class="container home-hero__grid"><div class="home-hero__content"><p class="eyebrow">${eyebrow}</p><h1>${courseName}<br><span>Cheatsheet</span></h1><p class="hero-copy">${intro}</p><a class="button" href="${startHref}">Begin bij de eerste week <span aria-hidden="true">→</span></a></div><div class="hero-art" aria-hidden="true"><span class="code-sticker">${art}</span></div></div></section><section class="week-overview section section--white"><div class="container"><div class="section-heading"><p class="eyebrow">Alle lesstof bij elkaar</p><h2>Kies je week</h2><p>Open een kaart om te zien welke onderwerpen je die week kunt opzoeken.</p></div><div class="card-grid">${cards}</div></div></section></main>`;
+  const content = `<main id="main-content"><section class="home-hero"><div class="container home-hero__grid"><div class="home-hero__content"><p class="eyebrow">${eyebrow}</p><h1>${courseName}<br><span>Cheatsheet</span></h1><p class="hero-copy">${intro}</p><a class="button" href="${startHref}">Begin bij de eerste week <span aria-hidden="true">-&gt;</span></a></div><div class="hero-art" aria-hidden="true"><span class="code-sticker">${art}</span></div></div></section><section class="week-overview section section--white"><div class="container"><div class="section-heading"><p class="eyebrow">Alle lesstof bij elkaar</p><h2>Kies je week</h2><p>Open een kaart om te zien welke onderwerpen je die week kunt opzoeken.</p></div><div class="card-grid">${cards}</div></div></section></main>`;
   fs.writeFileSync(path.join(root, course, "index.html"), template({ title: "Overzicht", courseName, course, content, bodyClass: "home-page", depth: 1 }));
 }
 
 function lessonContent({ courseName, course, week, title, html, hrefBack, current, depth = 1, label = `Week ${week}` }) {
   const localPrefix = depth === 1 ? "" : "../".repeat(depth - 1);
-  const content = `<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="${localPrefix}${hrefBack}">Overzicht</a><span aria-hidden="true">/</span><span>${label}</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">${label}</p><h1>${escapeHtml(title)}</h1></div></header><article class="lesson-content container">${html}</article></main>`;
-  return template({ title: `${label} - ${title}`, courseName, course, content, current, depth, bodyClass: "week-page" });
+  html = sanitizeSymbols(html);
+  const isCompactLesson = course === "javascript";
+  const toc = isCompactLesson ? buildLessonToc(html) : "";
+  const content = `<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="${localPrefix}${hrefBack}">Overzicht</a><span aria-hidden="true">/</span><span>${label}</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">${label}</p><h1>${escapeHtml(title)}</h1></div></header><article class="lesson-content container">${toc}${html}</article></main>`;
+  return template({ title: `${label} - ${title}`, courseName, course, content, current, depth, bodyClass: `week-page${isCompactLesson ? " lesson-page--compact" : ""}` });
 }
 
 function buildPortal() {
@@ -137,7 +206,7 @@ function buildPortal() {
     ["HTML & CSS", "Bouw webpagina’s en geef ze vorm met CSS.", "html-css/index.html", "&lt;/&gt;", "mint", "Periode 1 · week 2 t/m 7"],
     ["JavaScript", "Maak webpagina’s interactief met logica, events en timers.", "javascript/index.html", "JS", "lavender", "Periode 2 · week 1 t/m 8"],
     ["PHP", "Werk server-side met formulieren, databases, CRUD en login.", "php/index.html", "PHP", "sky", "Periode 3 en 4"],
-  ].map(([title, text, href, icon, color, meta]) => `<a class="course-card card card--${color}" href="${href}"><span class="course-card__icon">${icon}</span><p class="eyebrow">${meta}</p><h2>${title}</h2><p>${text}</p><span class="card-link">Open cheatsheet <span aria-hidden="true">→</span></span></a>`).join("");
+  ].map(([title, text, href, icon, color, meta]) => `<a class="course-card card card--${color}" href="${href}"><span class="course-card__icon">${icon}</span><p class="eyebrow">${meta}</p><h2>${title}</h2><p>${text}</p><span class="card-link">Open cheatsheet <span aria-hidden="true">-&gt;</span></span></a>`).join("");
   const content = `<main id="main-content"><section class="portal-hero"><div class="container"><p class="eyebrow">Software Development · Naslagwerk</p><h1>Kies je<br><span>cheatsheet</span></h1><p>Zoek uitleg en codevoorbeelden terug voor HTML &amp; CSS, JavaScript en PHP.</p></div></section><section class="section section--white"><div class="container portal-grid">${cards}</div></section></main>`;
   fs.writeFileSync(path.join(root, "index.html"), template({ title: "Cheatsheets", courseName: "Alle cheatsheets", course: "portal", content, depth: 0, bodyClass: "portal-page" }));
 }
@@ -167,9 +236,10 @@ function buildJavascript() {
   jsWeeks.forEach((week) => {
     const legacyPath = path.join(root, `old_content/JavaScript-Cheatsheet-main/pages/week${week}.html`);
     const currentPath = path.join(root, `javascript/week-${week}.html`);
-    const html = fs.existsSync(legacyPath)
+    const sourceHtml = fs.existsSync(legacyPath)
       ? normalizeLegacyContent(extractClassInner(fs.readFileSync(legacyPath, "utf8"), "content"), "javascript")
       : extractArticleInner(fs.readFileSync(currentPath, "utf8"), "lesson-content");
+    const html = normalizeCodeBlocks(sourceHtml.replace(/<nav class="lesson-toc"[\s\S]*?<\/nav>/, ""));
     const title = jsMeta[week - 1][0];
     fs.writeFileSync(path.join(root, `javascript/week-${week}.html`), lessonContent({ courseName: "JavaScript", course: "javascript", week, title, html, hrefBack: "index.html", current: week }));
     addSearch("JavaScript", `Week ${week}`, title, `javascript/week-${week}.html`, html);
@@ -188,7 +258,7 @@ function buildPhp() {
     }).join("");
     return `<section class="section php-period${period === 3 ? " section--white" : ""}" id="periode-${period}"><div class="container"><div class="section-heading"><p class="eyebrow">Periode ${period}</p><h2>${period === 3 ? "PHP-basis, Create & Read" : "CRUD, login & sessions"}</h2><p>${period === 3 ? "Van de basis van PHP tot formulieren, databases en gegevens toevoegen." : "Van gegevens aanpassen en verwijderen tot accounts en beveiligde pagina’s."}</p></div><div class="card-grid">${cards}</div></div></section>`;
   }).join("");
-  const content = `<main id="main-content"><section class="home-hero"><div class="container home-hero__grid"><div><p class="eyebrow">Eerstejaars Software Development</p><h1>PHP<br><span>Cheatsheet</span></h1><p class="hero-copy">Praktische uitleg over server-side code, databases, formulieren, CRUD en inloggen.</p><a class="button" href="#periode-3">Bekijk alle weken <span aria-hidden="true">↓</span></a></div><div class="hero-art" aria-hidden="true"><span class="code-sticker">PHP</span></div></div></section>${periodSections}</main>`;
+  const content = `<main id="main-content"><section class="home-hero"><div class="container home-hero__grid"><div><p class="eyebrow">Eerstejaars Software Development</p><h1>PHP<br><span>Cheatsheet</span></h1><p class="hero-copy">Praktische uitleg over server-side code, databases, formulieren, CRUD en inloggen.</p><a class="button" href="#periode-3">Bekijk alle weken <span aria-hidden="true">v</span></a></div><div class="hero-art" aria-hidden="true"><span class="code-sticker">PHP</span></div></div></section>${periodSections}</main>`;
   fs.writeFileSync(path.join(root, "php/index.html"), template({ title: "Overzicht", courseName: "PHP", course: "php", content, depth: 1, bodyClass: "home-page" }));
   [3, 4].forEach((period) => phpWeeks.forEach((week) => {
     const legacyPath = path.join(root, `old_content/PHP-cheatsheet-main/periode-${period}/week-${String(week).padStart(2, "0")}.html`);
@@ -203,6 +273,8 @@ function buildPhp() {
 }
 
 function addSearch(course, week, title, url, html) {
+  title = sanitizeSymbols(title);
+  html = sanitizeSymbols(html);
   searchIndex.push({ title, week: `${course} · ${week}`, url, text: plainText(html) });
   [...html.matchAll(/<h2 id="([^"]+)">([\s\S]*?)<a class="heading-link"[\s\S]*?<\/h2>([\s\S]*?)(?=<h2|$)/g)].forEach((m) => searchIndex.push({ title: plainText(m[2]), week: `${course} · ${week}`, url: `${url}#${m[1]}`, text: plainText(m[3]) }));
 }

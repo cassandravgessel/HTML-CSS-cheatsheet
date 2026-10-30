@@ -2,13 +2,13 @@
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Periode 4 · Week 1 - Editpagina &amp; item ophalen uit de PHP cheatsheet."><meta name="theme-color" content="#e8f2eb">
 <title>Periode 4 · Week 1 - Editpagina &amp; item ophalen | PHP Cheatsheet</title>
-<link rel="stylesheet" href="../../assets/css/styles.css?v=20260904-5">
+<link rel="stylesheet" href="../../assets/css/styles.css?v=20261030-4">
 <script src="../../assets/js/search-index.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
 <script src="../../assets/js/main.js" defer></script></head>
 <body class="week-page" data-root="../../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
-<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-4/week-01.html" aria-current="page">Week 1</a></li><li><a href="../periode-4/week-02.html">Week 2</a></li><li><a href="../periode-4/week-03.html">Week 3</a></li><li><a href="../periode-4/week-04.html">Week 4</a></li><li><a href="../periode-4/week-05.html">Week 5</a></li><li><a href="../periode-4/week-06.html">Week 6</a></li><li><a href="../periode-4/week-07.html">Week 7</a></li><li><a href="../periode-4/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>PHP</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true"></span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="../index.html">Overzicht</a></li><li><a href="../periode-4/week-01.html" aria-current="page">Week 1</a></li><li><a href="../periode-4/week-02.html">Week 2</a></li><li><a href="../periode-4/week-03.html">Week 3</a></li><li><a href="../periode-4/week-04.html">Week 4</a></li><li><a href="../periode-4/week-05.html">Week 5</a></li><li><a href="../periode-4/week-06.html">Week 6</a></li><li><a href="../periode-4/week-07.html">Week 7</a></li><li><a href="../periode-4/week-08.html">Week 8</a></li><li class="nav-courses"><a href="../../index.html">Alle cursussen</a></li></ul></div></nav></header>
 <main id="main-content"><div class="container"><nav class="breadcrumb"><a href="../index.html">Overzicht</a><span aria-hidden="true">/</span><span>Periode 4 · Week 1</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Periode 4 · Week 1</p><h1>Editpagina &amp; item ophalen</h1></div></header><article class="lesson-content container"><h2 id="wat-leer-je-deze-week">Wat leer je deze week?<a class="heading-link" href="#wat-leer-je-deze-week" aria-label="Link naar Wat leer je deze week?">#</a></h2>
 <p>In periode 3 kon je al meerdere items uit de database ophalen en tonen op een pagina.</p>
 <p>Deze week ga je een stap verder: je haalt één specifiek item op.</p>
@@ -22,13 +22,13 @@
 <p>PHP leest dat <code>id</code>, zoekt in de database naar item 3 en vult daarna het formulier met de bestaande data.</p>
 <p>De flow is dus:</p>
 <pre data-lang="text"><code class="language-text">klik op bewerken
-↓
+v
 id gaat mee in de URL
-↓
+v
 PHP leest het id uit met $_GET
-↓
+v
 database zoekt het juiste item
-↓
+v
 formulier wordt ingevuld met bestaande data</code></pre>
 <h2 id="wat-moet-je-kennen">Wat moet je kennen?<a class="heading-link" href="#wat-moet-je-kennen" aria-label="Link naar Wat moet je kennen?">#</a></h2>
 <h3>1. GET parameters uitlezen</h3>

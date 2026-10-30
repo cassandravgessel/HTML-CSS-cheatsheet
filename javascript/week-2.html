@@ -2,14 +2,14 @@
 <html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Week 2 - Functies en onclick uit de JavaScript cheatsheet."><meta name="theme-color" content="#e8f2eb">
 <title>Week 2 - Functies en onclick | JavaScript Cheatsheet</title>
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260904-5">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20261030-4">
 <script src="../assets/js/search-index.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js" defer></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js" defer></script>
 <script src="../assets/js/main.js" defer></script></head>
-<body class="week-page" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
-<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html" aria-current="page">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
-<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 2</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 2</p><h1>Functies en onclick</h1></div></header><article class="lesson-content container"><section>
+<body class="week-page lesson-page--compact" data-root="../"><a class="skip-link" href="#main-content">Ga direct naar de inhoud</a>
+<header class="site-header"><div class="brand-row container"><a class="brand" href="../index.html">casscodes<span aria-hidden="true">*</span></a><p class="course-label">Cursus <strong>JavaScript</strong></p><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="week-navigation">Menu</button></div><div class="site-search container" role="search"><label class="visually-hidden" for="site-search-input">Zoek in alle cheatsheets</label><div class="search-box"><span class="search-icon" aria-hidden="true"></span><input id="site-search-input" type="search" placeholder="Zoek een term..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><span class="search-shortcut" aria-hidden="true">/</span><ul class="search-results" id="search-results" role="listbox" hidden></ul></div></div><nav class="week-nav" id="week-navigation" aria-label="Cheatsheet navigatie"><div class="container"><ul><li><a href="index.html">Overzicht</a></li><li><a href="week-1.html">Week 1</a></li><li><a href="week-2.html" aria-current="page">Week 2</a></li><li><a href="week-3.html">Week 3</a></li><li><a href="week-4.html">Week 4</a></li><li><a href="week-5.html">Week 5</a></li><li><a href="week-6.html">Week 6</a></li><li><a href="week-7.html">Week 7</a></li><li><a href="week-8.html">Week 8</a></li><li class="nav-courses"><a href="../index.html">Alle cursussen</a></li></ul></div></nav></header>
+<main id="main-content"><div class="container"><nav class="breadcrumb"><a href="index.html">Overzicht</a><span aria-hidden="true">/</span><span>Week 2</span></nav></div><header class="lesson-hero"><div class="container"><p class="eyebrow">Week 2</p><h1>Functies en onclick</h1></div></header><article class="lesson-content container"><nav class="lesson-toc" aria-labelledby="lesson-toc-title"><p id="lesson-toc-title">Op deze pagina</p><ol><li><a href="#functies-herbruikbare-code">Functies (herbruikbare code)</a></li><li><a href="#functies-met-onclick-knop-reageert">Functies met onclick (knop reageert)</a></li><li><a href="#tekst-veranderen-met-innerhtml">Tekst veranderen met innerHTML</a></li><li><a href="#stijl-aanpassen-met-style">Stijl aanpassen met style</a></li><li><a href="#veelgemaakte-fouten">Veelgemaakte fouten</a></li><li><a href="#debug-tips">Debug tips</a></li><li><a href="#stappenplan-opdracht-dark-mode">Stappenplan Opdracht Dark Mode</a></li></ol></nav><section>
                 <h2 id="functies-herbruikbare-code">Functies (herbruikbare code)<a class="heading-link" href="#functies-herbruikbare-code" aria-label="Link naar Functies (herbruikbare code)">#</a></h2>
 
                 <div class="callout">
@@ -22,16 +22,14 @@
                     <div>
                         <h3>Functie maken:</h3>
                         <pre><code class="language-javascript">function zegHallo() {
-
-                              console.log(&quot;Hallo!&quot;);
-
-                            }</code></pre>
+console.log(&quot;Hallo!&quot;);
+}</code></pre>
                     </div>
                     <div>
                         <h3>Functie aanroepen:</h3>
                         <pre><code class="language-javascript">zegHallo();
 
-                            // Nu gebeurt het pas!</code></pre>
+// Nu gebeurt het pas!</code></pre>
                     </div>
                 </div>
 
@@ -48,19 +46,15 @@
                     <div>
                         <strong>HTML:</strong>
                         <pre><code class="language-javascript">&lt;button onclick=&quot;zegHallo()&quot;&gt;
-
-                              Klik mij
-
-                            &lt;/button&gt;</code></pre>
+Klik mij
+&lt;/button&gt;</code></pre>
                     </div>
                     <div>
                         <strong>JavaScript:</strong>
                         <pre><code class="language-javascript">function zegHallo() {
-
-                              alert(&quot;Je
-                                klikte!&quot;);
-
-                            }</code></pre>
+alert(&quot;Je
+klikte!&quot;);
+}</code></pre>
                     </div>
                 </div>
 
@@ -81,20 +75,15 @@
                     <div>
                         <strong>HTML:</strong>
                         <pre><code class="language-javascript">&lt;p id=&quot;tekst&quot;&gt;Oude tekst&lt;/p&gt;
-
-                            &lt;button onclick=&quot;verander()&quot;&gt;
-
-                              Verander tekst
-
-                            &lt;/button&gt;</code></pre>
+&lt;button onclick=&quot;verander()&quot;&gt;
+Verander tekst
+&lt;/button&gt;</code></pre>
                     </div>
                     <div>
                         <strong>JavaScript:</strong>
                         <pre><code class="language-javascript">function verander() {
-
-                              document.getElementById(&quot;tekst&quot;).innerHTML = &quot;Nieuwe tekst!&quot;;
-
-                            }</code></pre>
+document.getElementById(&quot;tekst&quot;).innerHTML = &quot;Nieuwe tekst!&quot;;
+}</code></pre>
                     </div>
                 </div>
             </section>
@@ -104,44 +93,36 @@
 
                 <h3>Kleur veranderen:</h3>
                 <pre><code class="language-javascript">function maakRood() {
-
-                      document.getElementById(&quot;tekst&quot;).style.color = &quot;red&quot;;
-
-                    }</code></pre>
+document.getElementById(&quot;tekst&quot;).style.color = &quot;red&quot;;
+}</code></pre>
 
                 <h3>Element verbergen/tonen:</h3>
                 <pre><code class="language-javascript">function verberg() {
-
-                      document.getElementById(&quot;foto&quot;).style.display = &quot;none&quot;;
-
-                    }
-
-
-                    function toon() {
-
-                      document.getElementById(&quot;foto&quot;).style.display = &quot;flex&quot;;
-
-                    }</code></pre>
+document.getElementById(&quot;foto&quot;).style.display = &quot;none&quot;;
+}
+function toon() {
+document.getElementById(&quot;foto&quot;).style.display = &quot;flex&quot;;
+}</code></pre>
 
                 <div class="callout">
                     <strong>Veel gebruikte style properties:</strong>
                     <ul>
-                        <li><code>style.color</code> → tekstkleur</li>
-                        <li><code>style.backgroundColor</code> → achtergrondkleur</li>
-                        <li><code>style.display</code> → verbergen/tonen ("none" of "flex"/"block")</li>
-                        <li><code>style.fontSize</code> → lettergrootte (bijv. "20px")</li>
+                        <li><code>style.color</code> -&gt; tekstkleur</li>
+                        <li><code>style.backgroundColor</code> -&gt; achtergrondkleur</li>
+                        <li><code>style.display</code> -&gt; verbergen/tonen ("none" of "flex"/"block")</li>
+                        <li><code>style.fontSize</code> -&gt; lettergrootte (bijv. "20px")</li>
                     </ul>
                 </div>
             </section>
 
             <section>
-                <h2 id="veelgemaakte-fouten">🔥 Veelgemaakte fouten<a class="heading-link" href="#veelgemaakte-fouten" aria-label="Link naar 🔥 Veelgemaakte fouten">#</a></h2>
+                <h2 id="veelgemaakte-fouten">Veelgemaakte fouten<a class="heading-link" href="#veelgemaakte-fouten" aria-label="Link naar Veelgemaakte fouten">#</a></h2>
 
                 <div class="callout callout--warning">
-                    <code>function zegHallo</code> → <code>function zegHallo()</code> (haakjes!)<br>
-                    <code>onclick="zegHallo"</code> → <code>onclick="zegHallo()"</code> (haakjes!)<br>
-                    <code>style.background-color</code> → <code>style.backgroundColor</code> (camelCase)<br>
-                    Functienaam in HTML verschilt van JS → werkt niet!
+                    <code>function zegHallo</code> -&gt; <code>function zegHallo()</code> (haakjes!)<br>
+                    <code>onclick="zegHallo"</code> -&gt; <code>onclick="zegHallo()"</code> (haakjes!)<br>
+                    <code>style.background-color</code> -&gt; <code>style.backgroundColor</code> (camelCase)<br>
+                    Functienaam in HTML verschilt van JS -&gt; werkt niet!
                 </div>
             </section>
 
@@ -151,14 +132,12 @@
                 <div class="callout">
                     <strong>Test altijd in de console:</strong>
                     <pre><code class="language-javascript">function test() {
-
-                          console.log(&quot;Functie
-                            werkt!&quot;);
-
-                        }</code></pre>
+console.log(&quot;Functie
+werkt!&quot;);
+}</code></pre>
                     <ul>
-                        <li>Zie je dit in de console? → Functie werkt</li>
-                        <li>Zie je niks? → Check of onclick goed geschreven is</li>
+                        <li>Zie je dit in de console? -&gt; Functie werkt</li>
+                        <li>Zie je niks? -&gt; Check of onclick goed geschreven is</li>
                         <li>Check of je id's exact hetzelfde zijn!</li>
                     </ul>
                 </div>
